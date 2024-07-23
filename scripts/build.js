@@ -24,11 +24,6 @@ import path from 'path'
         },
         external: [
             ...Object.keys(pkg.dependencies),
-            /* 'esbuild',
-            'vite',
-            'koa',
-            'minimist',
-            'picocolors' */
         ],
         plugins: [
             clean({

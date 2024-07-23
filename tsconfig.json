@@ -10,7 +10,11 @@
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
     "jsx": "preserve",
-    "lib": ["esnext", "dom", "dom.iterable"]
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "koa-router": ["node_modules/@types/koa__router"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": [

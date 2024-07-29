@@ -2,7 +2,7 @@
     <a-layout>
         <Header />
         <Content>
-            <!-- Content -->
+            <!-- Markdown -->
         </Content>
         <Footer />
     </a-layout>

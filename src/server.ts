@@ -16,7 +16,7 @@ import Header from './layout/components/Header.vue'
 import Content from './layout/components/Content.vue'
 import Footer from './layout/components/Footer.vue'
 // @ts-ignore
-import LayoutVue from './layout/components/Laydout.vue?type=text'
+import LayoutVueTmplate from './layout/components/Laydout.vue?type=text'
 
 function printUrls(port: number) {
     const interfaces = os.networkInterfaces()
@@ -58,7 +58,8 @@ function urlToMdFilePath(url: string) {
 }
 
 function ssr(mdHtml: string) {
-    const { descriptor } = parse(LayoutVue)
+    const template: string = (LayoutVueTmplate as string).replace('<!-- Markdown -->', mdHtml)
+    const { descriptor } = parse(template)
     const app = createSSRApp({
         template: descriptor.template?.content,
         components: {

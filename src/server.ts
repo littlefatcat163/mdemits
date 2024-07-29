@@ -12,11 +12,11 @@ import { normalizePath } from 'vite'
 import { mdEmitsConfig } from './config'
 import { createMarkdownRender } from './markdown'
 import { Layout } from 'ant-design-vue'
-import Header from './layout/components/Header.vue'
-import Content from './layout/components/Content.vue'
-import Footer from './layout/components/Footer.vue'
-// @ts-ignore
-import LayoutVueTmplate from './layout/components/Laydout.vue?type=text'
+import MDHeader from './layout/components/MDHeader.vue'
+import MDContent from './layout/components/MDContent.vue'
+import MDFooter from './layout/components/MDFooter.vue'
+import { LAYOUT_VUE_TEMPLATE, INDEX_HTML, INDEX_TS } from './CONSTANT'
+import { joinCwdPath } from './unitls'
 
 function printUrls(port: number) {
     const interfaces = os.networkInterfaces()
@@ -31,12 +31,20 @@ function printUrls(port: number) {
     }
 
     console.log(chalk.bold(`Server is running!`))
-    console.log(`  ${chalk.bold(chalk.greenBright('➜'))}  Local:   ${chalk.cyan(`http://localhost:${port}/`)}`)
+    console.log(
+        `  ${chalk.bold(chalk.greenBright('➜'))}  Local:   ${chalk.cyan(
+            `http://localhost:${port}/`
+        )}`
+    )
 
     if (addresses.length > 0) {
-        addresses.forEach(address => {
-            console.log(`  ${chalk.bold(chalk.greenBright('➜'))}  Network: ${chalk.cyan(`http://${address}:${port}/`)}`)
-        });
+        addresses.forEach((address) => {
+            console.log(
+                `  ${chalk.bold(chalk.greenBright('➜'))}  Network: ${chalk.cyan(
+                    `http://${address}:${port}/`
+                )}`
+            )
+        })
     }
 }
 
@@ -58,15 +66,16 @@ function urlToMdFilePath(url: string) {
 }
 
 function ssr(mdHtml: string) {
-    const template: string = (LayoutVueTmplate as string).replace('<!-- Markdown -->', mdHtml)
+    // const LAYOUT_VUE_TEMPLATE = await readFile(path.join(__dirname, 'layout/MDApp.vue'), 'utf8')
+    const template = LAYOUT_VUE_TEMPLATE.replace('<!-- Markdown -->', mdHtml)
     const { descriptor } = parse(template)
     const app = createSSRApp({
         template: descriptor.template?.content,
         components: {
-            Header,
-            Content,
-            Footer
-        }
+            MDHeader,
+            MDContent,
+            MDFooter,
+        },
     })
     app.use(Layout)
     return renderToString(app)
@@ -75,9 +84,23 @@ function ssr(mdHtml: string) {
 function createRouter() {
     const mdRender = createMarkdownRender()
     const router = new Router()
-    router.get(/^\/@node_modules\/.+$/, (ctx) => {
-        ctx.status = 200
-        ctx.body = 'ok there is node_modules'
+    router.get(/^\/@node_modules\/.+$/, async (ctx) => {
+        const pkgPath = ctx.path.replace(/^\/@/, '/')
+        if (pkgPath.includes('.css')) {
+            const css = await readFile(joinCwdPath(pkgPath), 'utf8')
+            ctx.response.type = 'text/css; charset=utf-8'
+            ctx.body = css
+            return
+        }
+        const pkgJsonFile = await readFile(joinCwdPath(pkgPath, 'package.json'), 'utf8')
+        const { module } = JSON.parse(pkgJsonFile)
+        const targetJs = await readFile(joinCwdPath(pkgPath, module), 'utf8')
+        ctx.response.type = 'application/javascript; charset=utf-8'
+        ctx.body = targetJs
+    })
+    router.get(/^\/index\.ts$/, async (ctx) => {
+        ctx.response.type = 'application/javascript; charset=utf-8'
+        ctx.body = INDEX_TS
     })
     router.get(/^\/[^.]*$/, async (ctx) => {
         const filePath = urlToMdFilePath(ctx.path)
@@ -89,15 +112,18 @@ function createRouter() {
         }
         const mdContent = await readFile(filePath, 'utf8')
         const mdHtml = mdRender.render(mdContent)
-        const html = await ssr(mdHtml)
-        ctx.status = 200
-        ctx.headers['Content-Type'] = 'text/html'
+        const ssrHtml = await ssr(mdHtml)
+        const html = INDEX_HTML.replace('<!-- SSR -->', ssrHtml)
+        ctx.response.type = 'text/html; charset=utf-8'
         ctx.body = html
     })
     return router
 }
 
-export function createServer({ port = 5194, hostname = '0.0.0.0' }: ServerOptions) {
+export function createServer({
+    port = 5194,
+    hostname = '0.0.0.0',
+}: ServerOptions) {
     return new Promise<ServerResult>((resolve, reject) => {
         const app = new Koa()
         const router = createRouter()
@@ -112,7 +138,7 @@ export function createServer({ port = 5194, hostname = '0.0.0.0' }: ServerOption
         })
         server.on('listening', () => {
             resolve({
-                printUrls: () => printUrls(port)
+                printUrls: () => printUrls(port),
             })
         })
         server.on('error', (err) => {

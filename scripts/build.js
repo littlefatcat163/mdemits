@@ -1,5 +1,6 @@
 import esbuild from 'esbuild'
 import { clean } from 'esbuild-plugin-clean'
+import { copy } from 'esbuild-plugin-copy'
 import { readFile } from 'fs/promises'
 import path from 'path'
 import pluginVue from 'esbuild-plugin-vue-next'
@@ -9,7 +10,7 @@ import pluginVue from 'esbuild-plugin-vue-next'
     const pkg = JSON.parse(res);
     await esbuild.build({
         entryPoints: ['./src/index.ts', './src/cli.ts'],
-        chunkNames: 'chunks/[name]-[hash]',
+        chunkNames: '[name]-[hash]',
         outdir: 'dist',
         splitting: true,
         bundle: true,
@@ -29,17 +30,22 @@ import pluginVue from 'esbuild-plugin-vue-next'
             clean({
                 patterns: ['./dist/*', './dist/assets/*.map.js']
             }),
+            copy({
+                assets: {
+                    from: ['./src/layout/*'],
+                    to: ['layout']
+                }
+            }),
             pluginVue(),
             {
-                name: 'vue-text',
+                name: 'only-text',
                 setup(build) {
                     build.onResolve({filter: /\.*\?type=text/}, args => ({
                         path: args.path,
-                        namespace: 'vue-text'
+                        namespace: 'only-text'
                     }))
-                    build.onLoad({filter: /\.*\?type=text/, namespace: 'vue-text'}, async (args) => {
+                    build.onLoad({filter: /\.*\?type=text/, namespace: 'only-text'}, async (args) => {
                         const filename = path.resolve('src', args.path.replace('?type=text', ''))
-                        console.log(filename)
                         const source = await readFile(filename, 'utf8')
                         return {
                             contents: source,

@@ -100,7 +100,32 @@ my-project/
 md 主要是用来写文档，如果需要设计到脚本等的东西执行，没必要写入进来，容易造成混乱；
 对于vue的提示也不好，插件不支持，也不知道扩展到md文件上
 
+## UI 框架的选择
 
-## vite 的限制
+- bootstrap 响应式支持最好，需要自己手写组件
+- bootstrap-vue-next 没正式出过版本
+- antdvue 主题调整支持友好
 
-必须要有入口文件，如 index.html，它主要是交给客户端的
+App.vue
+  Layout.vue
+  Header.vue
+
+Layout.vue... 这类组件优先跟着一起编译，但是一旦编译完毕，就无法支持动态修改，对后面的自定义布局调整无法支持
+
+或者是用已经编译好的布局文件，也是可以的
+如果直接用tsx语法呢？
+一样的，不管是tsx、jsx还是vue，都需要编译成js才行的
+
+ssr render -> App.vue -> html
+
+index.html
+  <div id="app">
+    <!-- ssr app html -->
+  </div>
+  <script type="module" src="/index.js"></script>
+
+index.js -> 客户端渲染的东西交给esbuild去编译就行
+  import { createSSRApp } from 'vue'
+  import AppPage from './AppPage.vue' -> 这里指向md转换的vue -> js
+  const app = createSSRApp(AppPage)
+  app.mount('#app')

@@ -3,8 +3,20 @@ import Router from 'koa-router'
 import os from 'os'
 import chalk from 'chalk'
 import path from 'path'
+import { existsSync } from 'fs'
+import { readFile } from 'fs/promises'
+import { createSSRApp } from 'vue'
+import { parse } from 'vue/compiler-sfc'
+import { renderToString } from 'vue/server-renderer'
 import { normalizePath } from 'vite'
 import { mdEmitsConfig } from './config'
+import { createMarkdownRender } from './markdown'
+import { Layout } from 'ant-design-vue'
+import Header from './layout/components/Header.vue'
+import Content from './layout/components/Content.vue'
+import Footer from './layout/components/Footer.vue'
+// @ts-ignore
+import LayoutVue from './layout/components/Laydout.vue?type=text'
 
 function printUrls(port: number) {
     const interfaces = os.networkInterfaces()
@@ -45,16 +57,41 @@ function urlToMdFilePath(url: string) {
     }
 }
 
+function ssr(mdHtml: string) {
+    const { descriptor } = parse(LayoutVue)
+    const app = createSSRApp({
+        template: descriptor.template?.content,
+        components: {
+            Header,
+            Content,
+            Footer
+        }
+    })
+    app.use(Layout)
+    return renderToString(app)
+}
+
 function createRouter() {
+    const mdRender = createMarkdownRender()
     const router = new Router()
     router.get(/^\/@node_modules\/.+$/, (ctx) => {
         ctx.status = 200
         ctx.body = 'ok there is node_modules'
     })
     router.get(/^\/[^.]*$/, async (ctx) => {
-        const filePath1 = urlToMdFilePath(ctx.path)
-        const filePath2 = urlToMdFilePath(ctx.url)
-        ctx.body = filePath1 + '\n' + filePath2
+        const filePath = urlToMdFilePath(ctx.path)
+        const fileExists = existsSync(filePath)
+        if (!fileExists) {
+            ctx.status = 404
+            ctx.body = 'Not Found'
+            return
+        }
+        const mdContent = await readFile(filePath, 'utf8')
+        const mdHtml = mdRender.render(mdContent)
+        const html = await ssr(mdHtml)
+        ctx.status = 200
+        ctx.headers['Content-Type'] = 'text/html'
+        ctx.body = html
     })
     return router
 }

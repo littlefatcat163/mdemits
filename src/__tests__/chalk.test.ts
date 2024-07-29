@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest'
+import { describe, test } from 'vitest'
 import chalk from 'chalk'
 
 describe('chalk', () => {

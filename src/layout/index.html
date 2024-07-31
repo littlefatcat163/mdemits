@@ -6,11 +6,22 @@
     <title>Document</title>
     <!-- styles -->
     <!-- head-scripts -->
+    <script type="importmap">
+        {
+            "imports": {
+                "vue": "/node_modules/vue/dist/vue.esm-browser.js",
+                "ant-design-vue": "/node_modules/ant-design-vue/dist/antd.esm.js"
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="app">
         <!-- SSR -->
     </div>
+    <hr>
+    <hr>
+    <div id="test"></div>
     <script type="module" src="./index.ts"></script>
     <!-- scripts -->
 </body>

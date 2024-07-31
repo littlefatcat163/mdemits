@@ -32,7 +32,7 @@ import pluginVue from 'esbuild-plugin-vue-next'
             }),
             copy({
                 assets: {
-                    from: ['./src/layout/*'],
+                    from: ['./src/layout/**'],
                     to: ['layout']
                 }
             }),

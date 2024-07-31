@@ -17,6 +17,7 @@ import MDContent from './layout/components/MDContent.vue'
 import MDFooter from './layout/components/MDFooter.vue'
 import { LAYOUT_VUE_TEMPLATE, INDEX_HTML, INDEX_TS } from './CONSTANT'
 import { joinCwdPath } from './unitls'
+import { build } from './build'
 
 function printUrls(port: number) {
     const interfaces = os.networkInterfaces()
@@ -58,11 +59,17 @@ type ServerResult = {
 }
 
 function urlToMdFilePath(url: string) {
-    if (/[\/]$/.test(url)) {
-        return normalizePath(path.join(mdEmitsConfig.root, url, 'index.md'))
+    if (/\.md$/.test(url)) {
+        return normalizePath(path.join(mdEmitsConfig.root, url))
     } else {
         return normalizePath(path.join(mdEmitsConfig.root, url + '.md'))
     }
+
+    /* if (/[\/]$/.test(url)) {
+        return normalizePath(path.join(mdEmitsConfig.root, url, 'index.md'))
+    } else {
+        return normalizePath(path.join(mdEmitsConfig.root, url + '.md'))
+    } */
 }
 
 function ssr(mdHtml: string) {
@@ -84,23 +91,22 @@ function ssr(mdHtml: string) {
 function createRouter() {
     const mdRender = createMarkdownRender()
     const router = new Router()
-    router.get(/^\/@node_modules\/.+$/, async (ctx) => {
-        const pkgPath = ctx.path.replace(/^\/@/, '/')
-        if (pkgPath.includes('.css')) {
-            const css = await readFile(joinCwdPath(pkgPath), 'utf8')
-            ctx.response.type = 'text/css; charset=utf-8'
-            ctx.body = css
-            return
-        }
-        const pkgJsonFile = await readFile(joinCwdPath(pkgPath, 'package.json'), 'utf8')
-        const { module } = JSON.parse(pkgJsonFile)
-        const targetJs = await readFile(joinCwdPath(pkgPath, module), 'utf8')
+    router.get(/^\/node_modules\/.+$/, async (ctx) => {
+        const targetJs = await readFile(joinCwdPath(ctx.path), 'utf8')
         ctx.response.type = 'application/javascript; charset=utf-8'
         ctx.body = targetJs
     })
-    router.get(/^\/index\.ts$/, async (ctx) => {
+    router.get(/\.md$/, async (ctx) => {
+        const filePath = urlToMdFilePath(ctx.path)
+        const res = await build({ entryPoints: [filePath] })
+        console.log(res)
         ctx.response.type = 'application/javascript; charset=utf-8'
-        ctx.body = INDEX_TS
+        ctx.body = res.outputFiles[0].text
+    })
+    router.get(/\/index\.ts$/, async (ctx) => {
+        const appVuePath = ctx.path.replace('/index.ts', '.md')
+        ctx.response.type = 'application/javascript; charset=utf-8'
+        ctx.body = INDEX_TS.replace(`./MDApp.vue`, appVuePath)
     })
     router.get(/^\/[^.]*$/, async (ctx) => {
         const filePath = urlToMdFilePath(ctx.path)
@@ -113,7 +119,10 @@ function createRouter() {
         const mdContent = await readFile(filePath, 'utf8')
         const mdHtml = mdRender.render(mdContent)
         const ssrHtml = await ssr(mdHtml)
-        const html = INDEX_HTML.replace('<!-- SSR -->', ssrHtml)
+        const html = INDEX_HTML.replace('<!-- SSR -->', ssrHtml).replace(
+            `./index.ts`,
+            path.join(ctx.path, 'index.ts')
+        )
         ctx.response.type = 'text/html; charset=utf-8'
         ctx.body = html
     })
@@ -133,9 +142,7 @@ export function createServer({
             reject(err)
             console.error(`${chalk.red('Server error:')} ${err}`)
         })
-        const server = app.listen(port, hostname, () => {
-            printUrls(port)
-        })
+        const server = app.listen(port, hostname)
         server.on('listening', () => {
             resolve({
                 printUrls: () => printUrls(port),

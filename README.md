@@ -57,9 +57,6 @@ root
     - [x] layout 你这里想用什么方式去解决呢？ 用 vue template很好写
     - [x] 可以用ssr-render的方式去把html结构渲染出来
     - [x] 样式可以考虑一下统一解析，也是可以完成的
-    - [ ] 如果想要功能的话，在客户端将需要的节点交接给js去执行，接管即可
-    - [ ] UI 框架的选择，bootstrap 支持分离的js和css，但是组件功能上有所欠缺，不过也基本是足够用的了
-    - [ ] 结合vite去编译入口文件
 4. 客户端渲染出页面，并执行js，完成页面的交互
 
 ## 结合vue的做法
@@ -129,3 +126,9 @@ index.js -> 客户端渲染的东西交给esbuild去编译就行
   import AppPage from './AppPage.vue' -> 这里指向md转换的vue -> js
   const app = createSSRApp(AppPage)
   app.mount('#app')
+
+
+## SSR 与 编译同步
+
+- [x] esbuild entryPoints 只能是markdown文件，一个md文件将生成一个vue页面
+- [x] 页面完成后，再统一交给 index.js 去调用vue初始化，把页面挂载到html节点

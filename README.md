@@ -127,8 +127,20 @@ index.js -> 客户端渲染的东西交给esbuild去编译就行
   const app = createSSRApp(AppPage)
   app.mount('#app')
 
+vue 翻车了，scoped不知道怎么控制，无法关闭scopedid，导致服务端的html和客户端的html无法完全一致，ssr接管出现问题
+
 
 ## SSR 与 编译同步
 
 - [x] esbuild entryPoints 只能是markdown文件，一个md文件将生成一个vue页面
 - [x] 页面完成后，再统一交给 index.js 去调用vue初始化，把页面挂载到html节点
+
+## 用react思路
+
+index.ts
+  App from './App.tsx' -> 去加载并渲染
+  render(App)
+
+/app.md
+  app.md -> html
+  renderToString(<App></App>)

@@ -1,5 +1,5 @@
 import esbuild from 'esbuild'
-import pluginVue from 'esbuild-plugin-vue-next'
+import pluginVue from 'esbuild-plugin-mdmits-vue'
 import pluginMd from './plugins/pluginMarkdown'
 // import pluginCDN from './plugins/pluginCDN'
 
@@ -21,6 +21,7 @@ export function build(options: BuildOptions) {
             /* pluginCDN({
                 vue: '/node_modules/vue/dist/vue.esm-browser.js'
             }) */
+
         ],
         external: ['vue'],
         format: 'esm',

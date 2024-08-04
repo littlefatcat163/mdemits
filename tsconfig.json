@@ -15,7 +15,8 @@
     "lib": ["esnext", "dom", "dom.iterable"],
     "baseUrl": ".",
     "paths": {
-      "koa-router": ["node_modules/@types/koa__router"]
+      "koa-router": ["node_modules/@types/koa__router"],
+      "vue": ["node_modules/vue"]
     }
   },
   "include": ["src/**/*"],

@@ -3,7 +3,7 @@ import { clean } from 'esbuild-plugin-clean'
 import { copy } from 'esbuild-plugin-copy'
 import { readFile } from 'fs/promises'
 import path from 'path'
-import pluginVue from 'esbuild-plugin-vue-next'
+import pluginVue from 'esbuild-plugin-mdmits-vue'
 
 (async () => {
     const res = await readFile(path.resolve('package.json'), 'utf-8');

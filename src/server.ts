@@ -11,12 +11,12 @@ import { renderToString } from 'vue/server-renderer'
 import { normalizePath } from 'vite'
 import { mdEmitsConfig } from './config'
 import { createMarkdownRender } from './markdown'
-import { Layout } from 'ant-design-vue'
+import { Layout, Button } from 'ant-design-vue'
 import MDHeader from './layout/components/MDHeader.vue'
 import MDContent from './layout/components/MDContent.vue'
 import MDFooter from './layout/components/MDFooter.vue'
 import { LAYOUT_VUE_TEMPLATE, INDEX_HTML, INDEX_TS } from './CONSTANT'
-import { joinCwdPath } from './unitls'
+import { joinCwdPath, joinMdemitsDistPath } from './unitls'
 import { build } from './build'
 
 function printUrls(port: number) {
@@ -84,7 +84,7 @@ function ssr(mdHtml: string) {
             MDFooter,
         },
     })
-    app.use(Layout)
+    app.use(Layout).use(Button)
     return renderToString(app)
 }
 
@@ -99,9 +99,11 @@ function createRouter() {
     router.get(/\.md$/, async (ctx) => {
         const filePath = urlToMdFilePath(ctx.path)
         const res = await build({ entryPoints: [filePath] })
-        console.log(res)
+        // const file = await readFile(joinMdemitsDistPath('layout/app.js'), 'utf8')
+        // console.log(res)
         ctx.response.type = 'application/javascript; charset=utf-8'
         ctx.body = res.outputFiles[0].text
+        // ctx.body = file
     })
     router.get(/\/index\.ts$/, async (ctx) => {
         const appVuePath = ctx.path.replace('/index.ts', '.md')

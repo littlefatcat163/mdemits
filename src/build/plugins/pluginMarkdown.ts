@@ -1,4 +1,4 @@
-import { loadEntry } from 'esbuild-plugin-vue-next/dist/entry.js'
+import { loadEntry } from 'esbuild-plugin-mdmits-vue/dist/entry.js'
 import esbuild from 'esbuild'
 import { readFile } from 'fs/promises'
 import { createMarkdownRender } from '../../markdown'
@@ -19,7 +19,7 @@ export default function pluginMarkdown(): esbuild.Plugin {
                     '<!-- Markdown -->',
                     htmlContent
                 )
-                const { code, errors } = loadEntry(mdVue, mdAppVuePath, true)
+                const { code, errors } = loadEntry(mdVue, mdAppVuePath, false)
                 return {
                     contents: code,
                     errors,

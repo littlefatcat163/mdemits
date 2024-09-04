@@ -4,6 +4,8 @@ import { copy } from 'esbuild-plugin-copy'
 import { readFile } from 'fs/promises'
 import path from 'path'
 import pluginVue from 'esbuild-plugin-mdmits-vue'
+import Components from 'unplugin-vue-components/esbuild'
+import {BootstrapVueNextResolver} from 'bootstrap-vue-next'
 
 (async () => {
     const res = await readFile(path.resolve('package.json'), 'utf-8');
@@ -54,7 +56,8 @@ import pluginVue from 'esbuild-plugin-mdmits-vue'
                         }
                     })
                 }
-            }
+            },
+            Components({resolvers: [BootstrapVueNextResolver()]})
         ]
     });
 })()

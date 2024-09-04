@@ -127,20 +127,35 @@ index.js -> 客户端渲染的东西交给esbuild去编译就行
   const app = createSSRApp(AppPage)
   app.mount('#app')
 
-vue 翻车了，scoped不知道怎么控制，无法关闭scopedid，导致服务端的html和客户端的html无法完全一致，ssr接管出现问题
-
 
 ## SSR 与 编译同步
 
 - [x] esbuild entryPoints 只能是markdown文件，一个md文件将生成一个vue页面
 - [x] 页面完成后，再统一交给 index.js 去调用vue初始化，把页面挂载到html节点
 
-## 用react思路
+## UI框架
 
-index.ts
-  App from './App.tsx' -> 去加载并渲染
-  render(App)
+- [x] rem 单位，响应式
+- [x] 支持cdn esm引入
 
-/app.md
-  app.md -> html
-  renderToString(<App></App>)
+### buefy
+周下载量 38486
+version 0.9.29
+start 9.5k
+轻量化、英文文档
+https://buefy.org/
+
+支持cdn esm
+没有正式版，只支持vue2，对于vue3的支持不多，使用人也少
+颜色设计不错，可以参考
+
+### Vuetify
+周下载量 525323
+version 3.7.0
+start 39.6k
+轻量化、英文文档
+https://vuetifyjs/vertify
+
+支持cdn esm
+有bug，主题加载会导致ssr出现闪屏
+组件对ssr支持不好，衔接有问题

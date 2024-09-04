@@ -32,7 +32,7 @@ export function build(options: BuildOptions) {
             // '.webp': 'file',
             // '.vue': 'js'
         },
-        logLevel: 'info',
+        // logLevel: 'info',
         // sourcemap: true,
         // 默认是true，false表示生成的js文件只写入内存，不写入文件系统
         write: false,

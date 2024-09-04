@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- styles -->
+    <!-- head-scripts -->
+    <script type="importmap">
+        {
+            "imports": {
+                "vue": "/node_modules/vue/dist/vue.esm-browser.js",
+                "ant-design-vue": "/node_modules/ant-design-vue/dist/antd.esm.js",
+                "vuetify": "/node_modules/vuetify/dist/vuetify.esm.js",
+                "bootstrap-vue-next": "/node_modules/bootstrap-vue-next/dist/bootstrap-vue-next.mjs",
+                "element-plus": "/node_modules/element-plus/dist/index.full.min.mjs",
+                "@varlet/ui": "/node_modules/@varlet/ui/es/varlet.esm.js"
+            }
+        }
+    </script>
+    <!-- <link rel="stylesheet" href="/node_modules/element-plus/dist/index.css"> -->
+    <link rel="stylesheet" href="/node_modules/@varlet/ui/es/style.css">
+    <link rel="stylesheet" href="/node_modules/mdemits/dist/layout/index.css">
+</head>
+<body>
+    <div id="app"><!-- SSR --></div>
+    <script type="module" src="./index.ts"></script>
+    <!-- scripts -->
+</body>
+</html>

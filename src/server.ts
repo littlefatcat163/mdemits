@@ -11,12 +11,12 @@ import { renderToString } from 'vue/server-renderer'
 import { normalizePath } from 'vite'
 import { mdEmitsConfig } from './config'
 import { createMarkdownRender } from './markdown'
-import { Layout, Button } from 'ant-design-vue'
+// import ElementPlus, {ZINDEX_INJECTION_KEY} from 'element-plus'
+import Varlet from '@varlet/ui'
 import MDHeader from './layout/components/MDHeader.vue'
 import MDContent from './layout/components/MDContent.vue'
 import MDFooter from './layout/components/MDFooter.vue'
-import { LAYOUT_VUE_TEMPLATE, INDEX_HTML, INDEX_TS } from './CONSTANT'
-import { joinCwdPath, joinMdemitsDistPath } from './unitls'
+import { joinCwdPath, htmlTemplate } from './unitls'
 import { build } from './build'
 
 function printUrls(port: number) {
@@ -72,8 +72,7 @@ function urlToMdFilePath(url: string) {
     } */
 }
 
-function ssr(mdHtml: string) {
-    // const LAYOUT_VUE_TEMPLATE = await readFile(path.join(__dirname, 'layout/MDApp.vue'), 'utf8')
+function ssr(mdHtml: string, LAYOUT_VUE_TEMPLATE: string) {
     const template = LAYOUT_VUE_TEMPLATE.replace('<!-- Markdown -->', mdHtml)
     const { descriptor } = parse(template)
     const app = createSSRApp({
@@ -84,7 +83,9 @@ function ssr(mdHtml: string) {
             MDFooter,
         },
     })
-    app.use(Layout).use(Button)
+    // app.use(ElementPlus, {size: 'large'})
+    // app.provide(ZINDEX_INJECTION_KEY, {current: 0})
+    app.use(Varlet)
     return renderToString(app)
 }
 
@@ -92,21 +93,23 @@ function createRouter() {
     const mdRender = createMarkdownRender()
     const router = new Router()
     router.get(/^\/node_modules\/.+$/, async (ctx) => {
-        const targetJs = await readFile(joinCwdPath(ctx.path), 'utf8')
-        ctx.response.type = 'application/javascript; charset=utf-8'
-        ctx.body = targetJs
+        let responseType = 'application/javascript; charset=utf-8'
+        if (/.css$/.test(ctx.path)) {
+            responseType = 'text/css; charset=utf-8'
+        }
+        const targetFile = await readFile(joinCwdPath(ctx.path), 'utf8')
+        ctx.response.type = responseType
+        ctx.body = targetFile
     })
     router.get(/\.md$/, async (ctx) => {
         const filePath = urlToMdFilePath(ctx.path)
         const res = await build({ entryPoints: [filePath] })
-        // const file = await readFile(joinMdemitsDistPath('layout/app.js'), 'utf8')
-        // console.log(res)
         ctx.response.type = 'application/javascript; charset=utf-8'
         ctx.body = res.outputFiles[0].text
-        // ctx.body = file
     })
     router.get(/\/index\.ts$/, async (ctx) => {
         const appVuePath = ctx.path.replace('/index.ts', '.md')
+        const { INDEX_TS } = await htmlTemplate()
         ctx.response.type = 'application/javascript; charset=utf-8'
         ctx.body = INDEX_TS.replace(`./MDApp.vue`, appVuePath)
     })
@@ -120,7 +123,8 @@ function createRouter() {
         }
         const mdContent = await readFile(filePath, 'utf8')
         const mdHtml = mdRender.render(mdContent)
-        const ssrHtml = await ssr(mdHtml)
+        const { INDEX_HTML, LAYOUT_VUE_TEMPLATE } = await htmlTemplate()
+        const ssrHtml = await ssr(mdHtml, LAYOUT_VUE_TEMPLATE)
         const html = INDEX_HTML.replace('<!-- SSR -->', ssrHtml).replace(
             `./index.ts`,
             path.join(ctx.path, 'index.ts')

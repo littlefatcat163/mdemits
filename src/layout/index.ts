@@ -2,7 +2,6 @@ import { createApp } from 'vue'
 // import ElementPlus, { ZINDEX_INJECTION_KEY } from 'element-plus'
 // import 'element-plus/dist/index.css'
 import Varlet from '@varlet/ui'
-import '@varlet/ui/es/style'
 import './index.css'
 import App from './MDApp.vue'
 

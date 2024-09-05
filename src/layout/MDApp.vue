@@ -1,5 +1,5 @@
 <template>
-    <p>文字内容</p>
+    <p class="text-lg">文字内容</p>
     <var-space :size="['10rem', '10rem']">
         <var-button>默认按钮</var-button>
         <var-button type="primary">主要按钮</var-button>

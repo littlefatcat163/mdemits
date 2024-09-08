@@ -1,4 +1,4 @@
-import { presetVarlet } from '@varlet/preset-tailwindcss'
+// import primeui from 'tailwindcss-primeui'
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{html,js,vue}"],
@@ -8,6 +8,6 @@ export default {
     },
   },
   plugins: [],
-  presets: [presetVarlet()]
+  presets: [require('tailwindcss-primeui')]
 }
 

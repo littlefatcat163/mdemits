@@ -1,7 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import '@varlet/ui/es/style';
+/* @import '@varlet/ui/es/style'; */
 
 .md-rightnav__item {
     @apply block cursor-pointer py-1 opacity-60 hover:opacity-100;

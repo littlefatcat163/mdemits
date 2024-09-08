@@ -1,4 +1,5 @@
 import { normalizePath } from 'vite'
+import type { App, Plugin } from 'vue'
 import path from 'path'
 import { readFile } from 'fs/promises'
 
@@ -38,4 +39,12 @@ export async function htmlTemplate() {
         INDEX_TS,
         LAYOUT_VUE_TEMPLATE,
     }
+}
+
+export function withInstall<T>(component: T): T & Plugin {
+    const Component = component as any & Plugin
+    Component.install = (app: App) => {
+        app.component(Component.name, Component)
+    }
+    return Component
 }

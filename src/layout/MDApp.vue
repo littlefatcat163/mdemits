@@ -7,13 +7,11 @@
     <Button label="Help" severity="help" />
     <Button label="Danger" severity="danger" />
     <Button label="Contrast" severity="contrast" />
-    <hr>
-    <MDTest />
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button'
-import MDTest from './components/MDTest.vue'
+// import Button from 'primevue/button'
+// import MDTest from './components/MDTest.vue'
 import type { TocItem } from '../types'
 // import { BButton } from 'bootstrap-vue-next'
 // import MDHeader from './components/MDHeader.vue'

@@ -1,21 +1,81 @@
 <template>
-    <Button label="Primary" @click="test1"/>
-    <Button label="Secondary" severity="secondary" />
-    <Button label="Success" severity="success" />
-    <Button label="Info" severity="info" />
-    <Button label="Warn" severity="warn" />
-    <Button label="Help" severity="help" />
-    <Button label="Danger" severity="danger" />
-    <Button label="Contrast" severity="contrast" />
+    <header class="mde-header">
+        <Toolbar>
+            <template #start>
+                <Button label="MDEMITS" text size="large" style="--p-button-lg-font-size: 1.25rem"></Button>
+            </template>
+            <template #end>
+                <div class="hidden md:block">
+                    <Button
+                        :icon="PrimeIcons.QRCODE"
+                        severity="secondary"
+                        size="large"
+                        text
+                        aria-label="Qrcode"
+                    ></Button>
+                    <Button
+                        :icon="PrimeIcons.SEARCH"
+                        severity="secondary"
+                        size="large"
+                        text
+                        aria-label="Search"
+                    ></Button>
+                    <Button
+                        :icon="themeIcon"
+                        severity="secondary"
+                        size="large"
+                        text
+                        aria-label="Filter"
+                        @click="toggleTheme"
+                    ></Button>
+                </div>
+            </template>
+        </Toolbar>
+    </header>
+    <Toolbar class="mde-nav-bar">
+        <template #start>
+            <Button
+                :icon="PrimeIcons.ALIGN_LEFT"
+                severity="secondary"
+                size="small"
+                text
+                aria-label="Bars"
+                label="菜单"
+                @click="toActiveNav"
+            ></Button>
+        </template>
+        <template #end>
+            <Button
+                :icon="PrimeIcons.ALIGN_RIGHT"
+                iconPos="right"
+                severity="secondary"
+                size="small"
+                text
+                aria-label="Toc"
+                label="页面导航"
+            ></Button>
+        </template>
+    </Toolbar>
+    <div :class="['mde-backdrop', { active: activeNav }]" @click="toActiveNav"></div>
+    <nav :class="['mde-nav', { active: activeNav }]">
+        <ul>
+            <li v-for="i in 60">li-{{ i }}</li>
+        </ul>
+    </nav>
+    <main class="mde-main">
+        <p v-for="i in 90">
+            I'm p!!!! {{ i }}
+        </p>
+    </main>
 </template>
 
 <script setup lang="ts">
-// import Button from 'primevue/button'
-// import MDTest from './components/MDTest.vue'
+import {ref} from 'vue'
+import Button from 'primevue/button'
+import Toolbar from 'primevue/toolbar'
+import { PrimeIcons } from '@primevue/core/api'
+const themeIcon = ref(PrimeIcons.SUN)
 import type { TocItem } from '../types'
-// import { BButton } from 'bootstrap-vue-next'
-// import MDHeader from './components/MDHeader.vue'
-// import MDRightNav from './components/MDRightNav.vue'
 const tocList: TocItem[] = [
     {
         title: 'title1',
@@ -47,9 +107,13 @@ const tocList: TocItem[] = [
         ],
     },
 ]
-
-function test1() {
-    const element = document.querySelector('html');
-    element!.classList.toggle('p-dark');
+const activeNav = ref(false)
+function toActiveNav() {
+    activeNav.value = !activeNav.value
+}
+function toggleTheme() {
+    const element = document.querySelector('html')
+    element!.classList.toggle('p-dark')
+    themeIcon.value = themeIcon.value === PrimeIcons.SUN ? PrimeIcons.MOON : PrimeIcons.SUN
 }
 </script>

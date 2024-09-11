@@ -501,17 +501,14 @@ video {
   --tw-contain-paint:  ;
   --tw-contain-style:  ;
 }
-.flex {
-  display: flex;
+.sticky {
+  position: sticky;
+}
+.block {
+  display: block;
 }
 .hidden {
   display: none;
-}
-.items-center {
-  align-items: center;
-}
-.gap-8 {
-  gap: 2rem;
 }
 .pl-6 {
   padding-left: 1.5rem;
@@ -521,24 +518,80 @@ video {
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-/* @import '@varlet/ui/es/style'; */
-.md-rightnav__item {
-  display: block;
-  cursor: pointer;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  opacity: 0.6;
+:root {
+    --mde-header-height: 4rem;
+    --mde-nav-width: 16rem;
 }
-.md-rightnav__item:hover {
-  opacity: 1;
+.mde-header {
+  position: sticky;
+  top: 0px;
+  left: 0px;
 }
-.md-rightnav__item--acitve {
-        color: var(--va-primary);
-        opacity: 1;
+.mde-header .p-toolbar {
+        --p-toolbar-padding: 0;
+        height: var(--mde-header-height);
     }
+.mde-nav-bar.p-toolbar {
+  position: sticky;
+  left: 0px;
+    --p-toolbar-padding: 0;
+    top: var(--mde-header-height);
+}
+.mde-backdrop {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 0;
+  display: none;
+  background-color: transparent;
+}
+.mde-backdrop.active {
+  display: block;
+        background-color: var(--p-mask-background);
+}
+.mde-nav {
+  position: fixed;
+  z-index: 10;
+  overflow-y: auto;
+  background: var(--p-highlight-background);
+  color: var(--p-highlight-color);
+    width: var(--mde-nav-width);
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform ease-in-out 180ms, top ease-in-out 180ms;
+    max-height: calc(100vh);
+}
+.mde-nav.active {
+        transform: translateX(0);
+    }
+@media (min-width: 1024px) {
+    .mde-nav-bar.p-toolbar {
+    display: none;
+  }
+    .mde-nav {
+        transform: translateX(0);
+        top: var(--mde-header-height);
+        max-height: calc(100vh - var(--mde-header-height));
+    }
+        .mde-backdrop.active {
+    display: none;
+  }
+    .mde-main {
+        padding-left: var(--mde-nav-width);
+    }
+}
 @media (min-width: 768px) {
 
   .md\:block {
     display: block;
+  }
+}
+@media (min-width: 1024px) {
+
+  .lg\:hidden {
+    display: none;
   }
 }

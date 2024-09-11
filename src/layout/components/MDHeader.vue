@@ -1,56 +1,74 @@
 <template>
-    <VaNavbar color="background-secondary" class="shadow-lg">
-        <template #left>
-            <VaNavbarItem>
-                <VaButton preset="secondary" size="large" style="--va-button-lg-font-size: 1.68rem;"> MDEMITS </VaButton>
-            </VaNavbarItem>
-            <VaNavbarItem>
-                <VaInput placeholder="Search" preset="solid" readonly @click="test">
-                    <template #prependInner>
-                        <VaIcon size="large" name="search" color="secondary" />
-                    </template>
-                </VaInput>
-            </VaNavbarItem>
-        </template>
-        <template #right>
-            <VaNavbarItem class="hidden md:block">
-                <div class="flex items-center gap-8">
-                    <div>Dashboard</div>
-                    <div>Reports</div>
-                    <div>Users</div>
-                    <div>
-                        <VaSwitch
-                            v-model="value"
-                            color="#5123a1"
-                            off-color="#ffd300"
-                            size="large"
-                            style="
-                                --va-switch-checker-background-color: #252723;
-                            "
-                        >
-                            <template #innerLabel>
-                                <div class="va-text-center">
-                                    <VaIcon
-                                        size="large"
-                                        :name="
-                                            value ? 'dark_mode' : 'light_mode'
-                                        "
-                                    />
-                                </div>
-                            </template>
-                        </VaSwitch>
-                    </div>
+    <header class="shadow-lg" style="position: sticky; top: 0; left: 0;">
+        <Toolbar>
+            <template #start>
+                <Button label="MDEMITS" text size="large" style="--p-button-lg-font-size: 1.25rem"></Button>
+            </template>
+            <template #end>
+                <div class="hidden md:block">
+                    <Button
+                        :icon="PrimeIcons.QRCODE"
+                        severity="secondary"
+                        size="large"
+                        text
+                        aria-label="Qrcode"
+                    ></Button>
+                    <Button
+                        :icon="PrimeIcons.SEARCH"
+                        severity="secondary"
+                        size="large"
+                        text
+                        aria-label="Search"
+                    ></Button>
+                    <Button
+                        :icon="themeIcon"
+                        severity="secondary"
+                        size="large"
+                        text
+                        aria-label="Filter"
+                        @click="toggleTheme"
+                    ></Button>
                 </div>
-            </VaNavbarItem>
-        </template>
-    </VaNavbar>
+            </template>
+        </Toolbar>
+    </header>
+    <div class="block lg:hidden" style="position: sticky; top: 82px;">
+        <Toolbar>
+            <template #start>
+                <Button
+                    :icon="PrimeIcons.ALIGN_LEFT"
+                    severity="secondary"
+                    size="small"
+                    text
+                    aria-label="Bars"
+                    label="菜单"
+                ></Button>
+            </template>
+            <template #end>
+                <Button
+                    :icon="PrimeIcons.ALIGN_RIGHT"
+                    iconPos="right"
+                    severity="secondary"
+                    size="small"
+                    text
+                    aria-label="Toc"
+                    label="页面导航"
+                ></Button>
+            </template>
+        </Toolbar>
+    </div>
 </template>
 
 <script lang="ts" setup>
+import Button from 'primevue/button'
+import Toolbar from 'primevue/toolbar'
+import { PrimeIcons } from '@primevue/core/api'
 import { ref } from 'vue'
-const value = ref(false)
+const themeIcon = ref(PrimeIcons.SUN)
 
-const test = () => {
-    console.log('click')
+function toggleTheme() {
+    const element = document.querySelector('html')
+    element!.classList.toggle('p-dark')
+    themeIcon.value = themeIcon.value === PrimeIcons.SUN ? PrimeIcons.MOON : PrimeIcons.SUN
 }
 </script>

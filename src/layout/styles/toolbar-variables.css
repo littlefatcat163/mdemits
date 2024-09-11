@@ -1,0 +1,14 @@
+:root {
+    --p-toolbar-background: var(--p-content-background);
+    --p-toolbar-border-color: var(--p-content-border-color);
+    --p-toolbar-border-radius: var(--p-content-border-radius);
+    --p-toolbar-color: var(--p-content-color);
+    --p-toolbar-gap: 0.5rem;
+    --p-toolbar-padding: 0.75rem;
+    --p-toolbar-background: var(--p-surface-50);
+    --p-toolbar-color: var(--p-content-color);
+}
+.p-dark {
+    --p-toolbar-background: var(--p-surface-800);
+    --p-toolbar-color: var(--p-content-color);
+}

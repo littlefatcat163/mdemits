@@ -10,12 +10,11 @@ import { createMarkdownRender } from '../markdown'
 import { htmlTemplate } from '../unitls'
 import { build } from '../build'
 import { mdEmitsConfig } from '../config'
-import Button from 'primevue/button'
+// import Button from 'primevue/button'
 import PrimeVue from 'primevue/config'
 import MDHeader from '../layout/components/MDHeader.vue'
 import MDContent from '../layout/components/MDContent.vue'
 import MDFooter from '../layout/components/MDFooter.vue'
-import MDTest from '../layout/components/MDTest.vue'
 
 const mdRender = createMarkdownRender()
 
@@ -42,17 +41,13 @@ function ssr(mdHtml: string, LAYOUT_VUE_TEMPLATE: string) {
             MDHeader,
             MDContent,
             MDFooter,
-            MDTest
-        },
-        methods: {
-            test1: () => {},
-        },
+        }
     })
     // app.use(ElementPlus, {size: 'large'})
     // app.provide(ZINDEX_INJECTION_KEY, {current: 0})
     // app.use(Varlet)
     app.use(PrimeVue)
-    app.component('Button', Button)
+    // app.component('Button', Button)
     return renderToString(app)
 }
 

@@ -1,13 +1,62 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-/* @import '@varlet/ui/es/style'; */
 
-.md-rightnav__item {
-    @apply block cursor-pointer py-1 opacity-60 hover:opacity-100;
+:root {
+    --mde-header-height: 4rem;
+    --mde-nav-width: 16rem;
+}
 
-    &--acitve {
-        color: var(--va-primary);
-        @apply opacity-100;
+.mde-header {
+    @apply sticky top-0 left-0;
+    .p-toolbar {
+        --p-toolbar-padding: 0;
+        height: var(--mde-header-height);
+    }
+}
+
+.mde-nav-bar.p-toolbar {
+    @apply sticky left-0;
+    --p-toolbar-padding: 0;
+    top: var(--mde-header-height);
+}
+
+.mde-backdrop {
+    @apply hidden z-0 fixed inset-x-0 inset-y-0 bg-transparent;
+    &.active {
+        @apply block;
+        background-color: var(--p-mask-background);
+    }
+}
+
+.mde-nav {
+    @apply fixed bg-highlight z-10 overflow-y-auto;
+    width: var(--mde-nav-width);
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform ease-in-out 180ms, top ease-in-out 180ms;
+    max-height: calc(100vh);
+    &.active {
+        transform: translateX(0);
+    }
+}
+
+@media screen(lg) {
+    .mde-nav-bar.p-toolbar {
+        @apply hidden;
+    }
+    .mde-nav {
+        transform: translateX(0);
+        top: var(--mde-header-height);
+        max-height: calc(100vh - var(--mde-header-height));
+    }
+    .mde-backdrop {
+        &.active {
+            @apply hidden;
+        }
+    }
+    .mde-main {
+        padding-left: var(--mde-nav-width);
     }
 }

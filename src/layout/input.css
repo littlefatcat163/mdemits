@@ -32,14 +32,22 @@
 .mde-nav {
     @apply fixed bg-highlight z-10 overflow-y-auto;
     width: var(--mde-nav-width);
-    left: 0;
     top: 0;
-    transform: translateX(-100%);
     transition: transform ease-in-out 180ms, top ease-in-out 180ms;
     max-height: calc(100vh);
     &.active {
         transform: translateX(0);
     }
+}
+
+.mde-nav-menu {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.mde-nav-toc {
+    right: 0;
+    transform: translateX(100%);
 }
 
 @media screen(lg) {

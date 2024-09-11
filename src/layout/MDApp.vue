@@ -2,7 +2,12 @@
     <header class="mde-header">
         <Toolbar>
             <template #start>
-                <Button label="MDEMITS" text size="large" style="--p-button-lg-font-size: 1.25rem"></Button>
+                <Button
+                    label="MDEMITS"
+                    text
+                    size="large"
+                    style="--p-button-lg-font-size: 1.25rem"
+                ></Button>
             </template>
             <template #end>
                 <div class="hidden md:block">
@@ -41,7 +46,7 @@
                 text
                 aria-label="Bars"
                 label="菜单"
-                @click="toActiveNav"
+                @click="activeNavMenu = true"
             ></Button>
         </template>
         <template #end>
@@ -53,24 +58,31 @@
                 text
                 aria-label="Toc"
                 label="页面导航"
+                @click="activeNavToc = true"
             ></Button>
         </template>
     </Toolbar>
-    <div :class="['mde-backdrop', { active: activeNav }]" @click="toActiveNav"></div>
-    <nav :class="['mde-nav', { active: activeNav }]">
+    <div
+        :class="['mde-backdrop', { active: activeNavMenu || activeNavToc }]"
+        @click="inactive"
+    ></div>
+    <nav :class="['mde-nav', 'mde-nav-menu', { active: activeNavMenu }]">
         <ul>
             <li v-for="i in 60">li-{{ i }}</li>
         </ul>
     </nav>
     <main class="mde-main">
-        <p v-for="i in 90">
-            I'm p!!!! {{ i }}
-        </p>
+        <p v-for="i in 90">I'm p!!!! {{ i }}</p>
     </main>
+    <nav :class="['mde-nav', 'mde-nav-toc', { active: activeNavToc }]">
+        <ul>
+            <li v-for="i in 60">li-{{ i }}</li>
+        </ul>
+    </nav>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 import Button from 'primevue/button'
 import Toolbar from 'primevue/toolbar'
 import { PrimeIcons } from '@primevue/core/api'
@@ -107,13 +119,16 @@ const tocList: TocItem[] = [
         ],
     },
 ]
-const activeNav = ref(false)
-function toActiveNav() {
-    activeNav.value = !activeNav.value
+const activeNavMenu = ref(false)
+const activeNavToc = ref(false)
+function inactive() {
+    activeNavMenu.value = false
+    activeNavToc.value = false
 }
 function toggleTheme() {
     const element = document.querySelector('html')
     element!.classList.toggle('p-dark')
-    themeIcon.value = themeIcon.value === PrimeIcons.SUN ? PrimeIcons.MOON : PrimeIcons.SUN
+    themeIcon.value =
+        themeIcon.value === PrimeIcons.SUN ? PrimeIcons.MOON : PrimeIcons.SUN
 }
 </script>

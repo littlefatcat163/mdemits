@@ -211,3 +211,11 @@ https://buefy.org/
 "@primevue/core/service": "/node_modules/@primevue/core/service/index.mjs",
 "@primevue/core/config": "/node_modules/@primevue/core/config/index.mjs",
 "@primevue/core/api": "/node_modules/@primevue/core/api/index.mjs"
+
+
+
+## 左边导航菜单
+
+- 树形结构展开
+- 跟着当前项目的配置来，在哪个目录下跑，就用哪个目录下的配置
+- 因为md文件名和实际想要显示的名字不一定对得上

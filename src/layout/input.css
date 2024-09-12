@@ -4,7 +4,7 @@
 
 :root {
     --mde-header-height: 4rem;
-    --mde-nav-width: 16rem;
+    --mde-nav-width: 18rem;
 }
 
 .mde-header {
@@ -22,7 +22,8 @@
 }
 
 .mde-backdrop {
-    @apply hidden z-0 fixed inset-x-0 inset-y-0 bg-transparent;
+    @apply hidden fixed inset-x-0 inset-y-0 bg-transparent;
+    z-index: 0;
     &.active {
         @apply block;
         background-color: var(--p-mask-background);
@@ -30,7 +31,7 @@
 }
 
 .mde-nav {
-    @apply fixed bg-highlight z-10 overflow-y-auto;
+    @apply fixed bg-highlight overflow-y-auto;
     width: var(--mde-nav-width);
     top: 0;
     transition: transform ease-in-out 180ms, top ease-in-out 180ms;
@@ -43,26 +44,44 @@
 .mde-nav-menu {
     left: 0;
     transform: translateX(-100%);
+    z-index: 1;
+    --p-tree-padding: 0;
+    --p-accordion-content-padding: 0;
 }
 
 .mde-nav-toc {
     right: 0;
     transform: translateX(100%);
+    z-index: 3;
 }
 
-@media screen(lg) {
+@media (min-width: 1280px) {
     .mde-nav-bar.p-toolbar {
         @apply hidden;
-    }
-    .mde-nav {
-        transform: translateX(0);
-        top: var(--mde-header-height);
-        max-height: calc(100vh - var(--mde-header-height));
     }
     .mde-backdrop {
         &.active {
             @apply hidden;
         }
+    }
+    .mde-nav-toc {
+        transform: translateX(0);
+        top: var(--mde-header-height);
+        max-height: calc(100vh - var(--mde-header-height));
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+    .mde-backdrop {
+        z-index: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mde-nav-menu {
+        transform: translateX(0);
+        top: var(--mde-header-height);
+        max-height: calc(100vh - var(--mde-header-height));
     }
     .mde-main {
         padding-left: var(--mde-nav-width);

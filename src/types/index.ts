@@ -1,7 +1,7 @@
-export type SideBar = {
+export type NavTreeItem = {
     text: string
     href?: string
-    items?: SideBar[]
+    items?: NavTreeItem[]
 }
 
 export type TocItem = {

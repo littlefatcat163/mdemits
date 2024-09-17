@@ -67,83 +67,46 @@
         @click="inactive"
     ></div>
     <nav :class="['mde-nav', 'mde-nav-menu', { active: activeNavMenu }]">
-        <Tree :value="nodes" v-model:selection-keys="selections" selectionMode="single" highlightOnSelect>
-            <template #nodeicon></template>
-            <template #nodetoggleicon></template>
-            <template #default="slotProps">
-                <b>{{ slotProps.node.label }}</b>
-            </template>
-            <template #url="slotProps">
-                <a target="_blank" rel="noopener noreferrer">{{ slotProps.node.label }}</a>
-            </template>
-        </Tree>
-        <Accordion multiple expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
-            <AccordionPanel value="0">
-                <AccordionHeader>
-                    <span class="flex items-center gap-2 w-full">
-                        <span class="font-bold whitespace-nowrap"
-                            >Amy Elsner</span
-                        >
-                    </span>
-                </AccordionHeader>
-                <AccordionContent>
-                    <Tree :value="nodes">
-                        <template #default="slotProps">
-                            <b>{{ slotProps.node.label }}</b>
-                        </template>
-                        <template #url="slotProps">
-                            <a target="_blank" rel="noopener noreferrer">{{ slotProps.node.label }}</a>
-                        </template>
-                    </Tree>
-                </AccordionContent>
-            </AccordionPanel>
-            <AccordionPanel value="1">
-                <AccordionHeader>
-                    <span class="flex items-center gap-2 w-full">
-                        <span class="font-bold whitespace-nowrap"
-                            >Onyama Limba</span
-                        >
-                    </span>
-                </AccordionHeader>
-                <AccordionContent>
-                    <p class="m-0">
-                        Sed ut perspiciatis unde omnis iste natus error sit
-                        voluptatem accusantium doloremque laudantium, totam rem
-                        aperiam, eaque ipsa quae ab illo inventore veritatis et
-                        quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                        enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit, sed quia consequuntur magni dolores eos
-                        qui ratione voluptatem sequi nesciunt. Consectetur,
-                        adipisci velit, sed quia non numquam eius modi.
-                    </p>
-                </AccordionContent>
-            </AccordionPanel>
-            <AccordionPanel value="2">
-                <AccordionHeader>
-                    <span class="flex items-center gap-2 w-full">
-                        <span class="font-bold whitespace-nowrap"
-                            >Ioni Bowcher</span
-                        >
-                    </span>
-                </AccordionHeader>
-                <AccordionContent>
-                    <p class="m-0">
-                        At vero eos et accusamus et iusto odio dignissimos
-                        ducimus qui blanditiis praesentium voluptatum deleniti
-                        atque corrupti quos dolores et quas molestias excepturi
-                        sint occaecati cupiditate non provident, similique sunt
-                        in culpa qui officia deserunt mollitia animi, id est
-                        laborum et dolorum fuga. Et harum quidem rerum facilis
-                        est et expedita distinctio. Nam libero tempore, cum
-                        soluta nobis est eligendi optio cumque nihil impedit quo
-                        minus.
-                    </p>
-                </AccordionContent>
-            </AccordionPanel>
-        </Accordion>
+        <MDNavTree :navList="navList" />
     </nav>
     <main class="mde-main">
-        <p v-for="i in 90">I'm p!!!! {{ i }} I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! I'm p!!!! </p>
+        
+        <hr>
+        <p>Button</p>
+        <Button label="Primary" />
+        <Button label="Secondary" severity="secondary" />
+        <Button label="Success" severity="success" />
+        <Button label="Info" severity="info" />
+        <Button label="Warn" severity="warn" />
+        <Button label="Help" severity="help" />
+        <Button label="Danger" severity="danger" />
+        <Button label="Contrast" severity="contrast" />
+        <hr>
+        <p>Message</p>
+        <Message severity="success">Success Message</Message>
+        <Message severity="info">Info Message</Message>
+        <Message severity="warn">Warn Message</Message>
+        <Message severity="error">Error Message</Message>
+        <Message severity="secondary">Secondary Message</Message>
+        <Message severity="contrast">Contrast Message</Message>
+        <hr>
+        <p>Badge</p>
+        <Badge value="2"></Badge>
+        <Badge value="6" severity="secondary"></Badge>
+        <Badge value="8" severity="success"></Badge>
+        <Badge value="4" severity="info"></Badge>
+        <Badge value="9" severity="warn"></Badge>
+        <Badge value="3" severity="danger"></Badge>
+        <Badge value="5" severity="contrast"></Badge>
+        <hr>
+        <p>Tag</p>
+        <Tag value="Primary"></Tag>
+        <Tag severity="secondary" value="Secondary"></Tag>
+        <Tag severity="success" value="Success"></Tag>
+        <Tag severity="info" value="Info"></Tag>
+        <Tag severity="warn" value="Warn"></Tag>
+        <Tag severity="danger" value="Danger"></Tag>
+        <Tag severity="contrast" value="Contrast"></Tag>
     </main>
     <nav :class="['mde-nav', 'mde-nav-toc', { active: activeNavToc }]">
         <ul>
@@ -156,14 +119,102 @@
 import { ref } from 'vue'
 import Button from 'primevue/button'
 import Toolbar from 'primevue/toolbar'
-import Accordion from 'primevue/accordion'
-import AccordionPanel from 'primevue/accordionpanel'
-import AccordionHeader from 'primevue/accordionheader'
-import AccordionContent from 'primevue/accordioncontent'
-import Tree from 'primevue/tree'
+import Message from 'primevue/message'
+import Badge from 'primevue/badge'
+import Tag from 'primevue/tag'
 import { PrimeIcons } from '@primevue/core/api'
+import MDNavTree from './components/MDNavTree.vue'
 const themeIcon = ref(PrimeIcons.SUN)
-import type { TocItem } from '../types'
+import type { TocItem, NavTreeItem } from '../types'
+const navList: NavTreeItem[] = [
+    {
+        text: '介绍',
+        href: '/#'
+    },
+    {
+        text: '安装',
+        items: [
+            {
+                text: '环境',
+                href: '/#/'
+            },
+            {
+                text: '软件',
+                href: '/#/'
+            }
+        ]
+    },
+    {
+        text: '极端案例场景',
+        items: [
+            {
+                text: '长标题',
+                items: [
+                    {
+                        text: 'English and how to use this content',
+                        href: '/#/'
+                    },
+                    {
+                        text: 'very long, very long, very long, very very very very very very very long long long long',
+                        href: '/#/'
+                    },
+                    {
+                        text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
+                        href: '/#/'
+                    }
+                ]
+            },
+            {
+                text: 'English and how to use this content',
+                href: '/#/'
+            },
+            {
+                text: 'very long, very long, very long, very very very very very very very long long long long',
+                href: '/#/'
+            },
+            {
+                text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
+                href: '/#/'
+            }
+        ]
+    },
+    {
+        text: '命令'
+    },
+    {
+        text: '组件',
+        items: [
+            {
+                text: '文字',
+                href: '/#'
+            },
+            {
+                text: '按钮',
+                href: '/#'
+            },
+            {
+                text: '图片',
+                href: '/#'
+            },
+            {
+                text: '卡片',
+                href: '/#'
+            },
+            {
+                text: '手风琴',
+                href: '/#'
+            },
+            {
+                text: '折叠',
+                href: '/#'
+            },
+            {
+                text: '提示框',
+                href: '/#'
+            }
+        ]
+    }
+]
 const tocList: TocItem[] = [
     {
         title: 'title1',
@@ -207,51 +258,4 @@ function toggleTheme() {
     themeIcon.value =
         themeIcon.value === PrimeIcons.SUN ? PrimeIcons.MOON : PrimeIcons.SUN
 }
-const selections = ref([])
-const nodes = ref([
-    {
-        key: '-1',
-        label: 'empty',
-        type: 'url'
-    },
-    {
-        key: '0',
-        label: 'Introduction',
-        children: [
-            { key: '0-0', label: 'What is Vue.js?', data: 'https://vuejs.org/guide/introduction.html#what-is-vue', type: 'url' },
-            { key: '0-1', label: 'Quick Start', data: 'https://vuejs.org/guide/quick-start.html#quick-start', type: 'url' },
-            { key: '0-2', label: 'Creating a Vue Application', data: 'https://vuejs.org/guide/essentials/application.html#creating-a-vue-application', type: 'url' },
-            { key: '0-3', label: 'Conditional Rendering', data: 'https://vuejs.org/guide/essentials/conditional.html#conditional-rendering', type: 'url' }
-        ]
-    },
-    {
-        key: '1',
-        label: 'Components In-Depth',
-        children: [
-            { 
-                key: '1-0',
-                label: 'Component Registration',
-                data: 'https://vuejs.org/guide/components/registration.html#component-registration',
-                type: 'url',
-                children: [
-                    {
-                        key: '1-0-0',
-                        label: 'Component Registration',
-                        data: 'https://vuejs.org/guide/components/registration.html#component-registration',
-                        type: 'url',
-                    },
-                    {
-                        key: '1-0-1',
-                        label: 'Component Registration',
-                        data: 'https://vuejs.org/guide/components/registration.html#component-registration',
-                        type: 'url',
-                    }
-                ]
-            },
-            { key: '1-1', label: 'Props', data: 'https://vuejs.org/guide/components/props.html#props', type: 'url' },
-            { key: '1-2', label: 'Components Events', data: 'https://vuejs.org/guide/components/events.html#component-events', type: 'url' },
-            { key: '1-3', label: 'Slots', data: 'https://vuejs.org/guide/components/slots.html#slots', type: 'url' }
-        ]
-    }
-])
 </script>

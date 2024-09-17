@@ -4,7 +4,9 @@ export default {
   content: ["./src/**/*.{html,js,vue}"],
   theme: {
     extend: {
-      
+      maxWidth: {
+        '8xl': '90rem'
+      }
     },
   },
   plugins: [primeui]

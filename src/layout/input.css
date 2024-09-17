@@ -2,9 +2,14 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* body {
+    overscroll-behavior: none;
+} */
+
 :root {
     --mde-header-height: 4rem;
-    --mde-nav-width: 18rem;
+    --mde-nav-width: 19rem;
+    --mde-main-pdx: 3rem;
 }
 
 .mde-header {
@@ -12,6 +17,7 @@
     .p-toolbar {
         --p-toolbar-padding: 0;
         height: var(--mde-header-height);
+        padding: 0 calc(1.5rem - var(--p-button-lg-padding-x));
     }
 }
 
@@ -19,6 +25,7 @@
     @apply sticky left-0;
     --p-toolbar-padding: 0;
     top: var(--mde-header-height);
+    padding: 0 calc(1.5rem - var(--p-button-sm-padding-x));
 }
 
 .mde-backdrop {
@@ -31,7 +38,8 @@
 }
 
 .mde-nav {
-    @apply fixed bg-highlight overflow-y-auto;
+    @apply fixed overflow-y-auto text-sm py-3;
+    background-color: var(--p-toolbar-background);
     width: var(--mde-nav-width);
     top: 0;
     transition: transform ease-in-out 180ms, top ease-in-out 180ms;
@@ -45,14 +53,28 @@
     left: 0;
     transform: translateX(-100%);
     z-index: 1;
+    border-right: 1px solid var(--p-toolbar-border-color);
     --p-tree-padding: 0;
     --p-accordion-content-padding: 0;
+    @apply pl-3;
 }
 
 .mde-nav-toc {
     right: 0;
     transform: translateX(100%);
     z-index: 3;
+    border-left: 1px solid var(--p-toolbar-border-color);
+}
+
+.mde-main {
+    padding-left: var(--mde-main-pdx);
+    padding-right: var(--mde-main-pdx);
+}
+
+@media (min-width: 1440px) {
+    .mde-header.p-toolbar {
+        padding: 0 5rem;
+    }
 }
 
 @media (min-width: 1280px) {
@@ -69,6 +91,9 @@
         top: var(--mde-header-height);
         max-height: calc(100vh - var(--mde-header-height));
     }
+    .mde-main {
+        padding-right: calc(var(--mde-nav-width) + var(--mde-main-pdx));
+    }
 }
 
 @media (min-width: 1024px) and (max-width: 1280px) {
@@ -84,6 +109,6 @@
         max-height: calc(100vh - var(--mde-header-height));
     }
     .mde-main {
-        padding-left: var(--mde-nav-width);
+        padding-left: calc(var(--mde-nav-width) + var(--mde-main-pdx));
     }
 }

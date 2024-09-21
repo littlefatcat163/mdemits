@@ -144,6 +144,7 @@ https://tw-elements.com/learn/te-foundations/te-ui-kit/hiding-elements/
 
 - [x] rem 单位，响应式
 - [x] 支持cdn esm引入
+- [x] 按需打包，颜色定制，深色、浅色修改，持久化支持 bootstrap 完美支持，其他框架多数在js里面去处理样式，在初始化的时候存在切换闪现变化
 
 ### @varlet/ui 716K
 

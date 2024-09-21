@@ -1,0 +1,94 @@
+:root
+    // --mde-primary: linear-gradient(45deg, #3e4075 0%, #3e4075 72%, #1b1f27 100%)
+    --mde-header-height 4rem
+    --mde-nav-width 19rem
+    --mde-main-pdx 3rem
+
+.mde-header
+    height var(--mde-header-height)
+
+.point-hover
+    cursor pointer
+    opacity 0.75
+    &:hover
+        opacity 1
+    
+.mde-theme-switch
+    --mde-light block
+    --mde-dark none
+    svg:nth-child(1)
+        display var(--mde-light)
+    svg:nth-child(2)
+        display var(--mde-dark)
+    &:hover
+        --mde-light none
+        --mde-dark block
+
+[data-bs-theme=dark]
+    .mde-theme-switch
+        --mde-light none
+        --mde-dark block
+        &:hover
+            --mde-light block
+            --mde-dark none
+
+.mde-backdrop
+    z-index 10
+    display none
+    position fixed
+    left 0
+    right 0
+    top 0
+    bottom 0
+    background-color var(--bs-black)
+    opacity 0.68
+    &.active
+        display block
+
+.mde-nav
+    position fixed
+    overflow-y auto
+    font-size 0.875rem
+    padding 0 1.5rem
+    width var(--mde-nav-width)
+    top: 0
+    transition transform ease-in-out 180ms, top ease-in-out 180ms
+    max-height calc(100vh)
+    &.active
+        transform translateX(0)
+
+.mde-nav-menu
+    left 0
+    transform translateX(-100%)
+    z-index 11
+
+.mde-nav-toc
+    right 0
+    transform translateX(100%)
+    z-index 13
+
+.mde-main
+    padding-left var(--mde-main-pdx)
+    padding-right var(--mde-main-pdx)
+
+@media (min-width: 1200px)
+    .mde-backdrop.active
+        display none
+    .mde-nav-toc
+        transform translateX(0)
+        top var(--mde-header-height)
+        max-height calc(100vh - var(--mde-header-height))
+    .mde-main
+        padding-right calc(var(--mde-nav-width) + var(--mde-main-pdx))
+
+@media (min-width: 992px) and (max-width: 1200px)
+    .mde-backdrop
+        z-index 12
+
+@media (min-width: 992px)
+    .mde-nav-menu
+        transform translateX(0)
+        top var(--mde-header-height)
+        max-height calc(100vh - var(--mde-header-height))
+    .mde-main
+        padding-left calc(var(--mde-nav-width) + var(--mde-main-pdx))

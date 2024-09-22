@@ -1,6 +1,6 @@
 <template>
-    <header class="mde-header border-bottom border-body-secondary bg-body d-flex align-items-center px-4">
-        <div class="fw-bold fs-2 text-primary flex-fill" role="button">MDEMITS</div>
+    <header class="mde-header border-bottom border-body-secondary text-light d-flex align-items-center px-4">
+        <div class="fw-bold fs-2 flex-fill" role="button">MDEMITS</div>
         <div class="d-grid column-gap-3" style="grid-template-columns: auto auto auto;">
             <svg class="point-hover" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"/>
@@ -54,14 +54,6 @@
             <BButton variant="info">Info</BButton>
             <BButton variant="light">Light</BButton>
             <BButton variant="dark">Dark</BButton>
-            <BSpinner type="grow" variant="primary" />
-            <BSpinner type="grow" variant="secondary" />
-            <BSpinner type="grow" variant="success" />
-            <BSpinner type="grow" variant="danger" />
-            <BSpinner type="grow" variant="warning" />
-            <BSpinner type="grow" variant="info" />
-            <BSpinner type="grow" variant="light" />
-            <BSpinner type="grow" variant="dark" />
             <hr>
             <BButton variant="outline-primary">Primary</BButton>
             <BButton variant="outline-secondary">Secondary</BButton>
@@ -89,6 +81,33 @@
             <BAlert :model-value="true" variant="info">Info Alert</BAlert>
             <BAlert :model-value="true" variant="light">Light Alert</BAlert>
             <BAlert :model-value="true" variant="dark">Dark Alert</BAlert>
+            <hr>
+            <p class="text-primary">.text-primary</p>
+            <p class="text-primary-emphasis">.text-primary-emphasis</p>
+            <p class="text-secondary">.text-secondary</p>
+            <p class="text-secondary-emphasis">.text-secondary-emphasis</p>
+            <p class="text-success">.text-success</p>
+            <p class="text-success-emphasis">.text-success-emphasis</p>
+            <p class="text-danger">.text-danger</p>
+            <p class="text-danger-emphasis">.text-danger-emphasis</p>
+            <p class="text-warning bg-dark">.text-warning</p>
+            <p class="text-warning-emphasis">.text-warning-emphasis</p>
+            <p class="text-info bg-dark">.text-info</p>
+            <p class="text-info-emphasis">.text-info-emphasis</p>
+            <p class="text-light bg-dark">.text-light</p>
+            <p class="text-light-emphasis">.text-light-emphasis</p>
+            <p class="text-dark bg-white">.text-dark</p>
+            <p class="text-dark-emphasis">.text-dark-emphasis</p>
+
+            <p class="text-body">.text-body</p>
+            <p class="text-body-emphasis">.text-body-emphasis</p>
+            <p class="text-body-secondary">.text-body-secondary</p>
+            <p class="text-body-tertiary">.text-body-tertiary</p>
+
+            <p class="text-black bg-white">.text-black</p>
+            <p class="text-white bg-dark">.text-white</p>
+            <p class="text-black-50 bg-white">.text-black-50</p>
+            <p class="text-white-50 bg-dark">.text-white-50</p>
         </div>
     </main>
     <nav :class="['mde-nav', 'mde-nav-toc border-left border-body-secondary bg-body', { active: activeNavToc }]">
@@ -98,7 +117,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BButton, BAlert, BBadge, BSpinner } from 'bootstrap-vue-next'
+import { BButton, BAlert, BBadge } from 'bootstrap-vue-next'
 import MDNavTree from './components/MDNavTree.vue'
 import type { NavTreeItem } from '../types'
 const navList: NavTreeItem[] = [

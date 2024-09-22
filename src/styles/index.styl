@@ -1,11 +1,25 @@
 :root
     // --mde-primary: linear-gradient(45deg, #3e4075 0%, #3e4075 72%, #1b1f27 100%)
     --mde-header-height 4rem
+    --mde-nav-bar-height 2.5rem
     --mde-nav-width 19rem
-    --mde-main-pdx 3rem
+    --mde-main-pdx 0rem
+    --mde-main-bg #f9f9f9
 
 .mde-header
     height var(--mde-header-height)
+    position fixed
+    top 0
+    left 0
+    right 0
+    z-index 10
+.mde-nav-bar
+    height var(--mde-nav-bar-height)
+    position fixed
+    top var(--mde-header-height)
+    left 0
+    right 0
+    z-index 10
 
 .point-hover
     cursor pointer
@@ -25,6 +39,7 @@
         --mde-dark block
 
 [data-bs-theme=dark]
+    --mde-main-bg #14181d
     .mde-theme-switch
         --mde-light none
         --mde-dark block
@@ -51,18 +66,19 @@
     font-size 0.875rem
     padding 0 1.5rem
     width var(--mde-nav-width)
-    top: 0
     transition transform ease-in-out 180ms, top ease-in-out 180ms
     max-height calc(100vh)
     &.active
         transform translateX(0)
 
 .mde-nav-menu
+    top 0
     left 0
     transform translateX(-100%)
     z-index 11
 
 .mde-nav-toc
+    top calc(var(--mde-header-height) + var(--mde-nav-bar-height))
     right 0
     transform translateX(100%)
     z-index 13
@@ -70,6 +86,11 @@
 .mde-main
     padding-left var(--mde-main-pdx)
     padding-right var(--mde-main-pdx)
+    padding-top var(--mde-header-height)
+    > div
+        padding 4rem
+        background-color var(--mde-main-bg)
+        // box-shadow 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
 
 @media (min-width: 1200px)
     .mde-backdrop.active

@@ -1,5 +1,5 @@
 <template>
-    <header class="mde-header border-bottom border-body-secondary d-flex align-items-center px-4">
+    <header class="mde-header border-bottom border-body-secondary bg-body d-flex align-items-center px-4">
         <div class="fw-bold fs-2 text-primary flex-fill" role="button">MDEMITS</div>
         <div class="d-grid column-gap-3" style="grid-template-columns: auto auto auto;">
             <svg class="point-hover" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </header>
-    <nav class="mde-nav-bar fs-6 border-bottom border-body-secondary d-flex justify-content-between d-xl-none px-4 py-2">
+    <nav class="mde-nav-bar bg-body fs-6 border-bottom border-body-secondary d-flex align-items-center justify-content-between d-xl-none px-4">
         <div class="point-hover" @click="activeNavMenu = true">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
                 <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
@@ -41,55 +41,57 @@
         :class="['mde-backdrop', { active: activeNavMenu || activeNavToc }]"
         @click="inactive"
     ></div>
-    <nav :class="['mde-nav', 'mde-nav-menu border-right border-body-secondary bg-body-tertiary', { active: activeNavMenu }]">
+    <nav :class="['mde-nav', 'mde-nav-menu border-right border-body-secondary bg-body', { active: activeNavMenu }]">
         <MDNavTree :navList="navList" />
     </nav>
     <main class="mde-main">
-        <BButton variant="primary">Primary</BButton>
-        <BButton variant="secondary">Secondary</BButton>
-        <BButton variant="success">Success</BButton>
-        <BButton variant="danger">Danger</BButton>
-        <BButton variant="warning">Warning</BButton>
-        <BButton variant="info">Info</BButton>
-        <BButton variant="light">Light</BButton>
-        <BButton variant="dark">Dark</BButton>
-        <BSpinner type="grow" variant="primary" />
-        <BSpinner type="grow" variant="secondary" />
-        <BSpinner type="grow" variant="success" />
-        <BSpinner type="grow" variant="danger" />
-        <BSpinner type="grow" variant="warning" />
-        <BSpinner type="grow" variant="info" />
-        <BSpinner type="grow" variant="light" />
-        <BSpinner type="grow" variant="dark" />
-        <hr>
-        <BButton variant="outline-primary">Primary</BButton>
-        <BButton variant="outline-secondary">Secondary</BButton>
-        <BButton variant="outline-success">Success</BButton>
-        <BButton variant="outline-danger">Danger</BButton>
-        <BButton variant="outline-warning">Warning</BButton>
-        <BButton variant="outline-info">Info</BButton>
-        <BButton variant="outline-light">Light</BButton>
-        <BButton variant="outline-dark">Dark</BButton>
-        <hr>
-        <BBadge variant="primary">Primary</BBadge>
-        <BBadge variant="secondary">Secondary</BBadge>
-        <BBadge variant="success">Success</BBadge>
-        <BBadge variant="danger">Danger</BBadge>
-        <BBadge variant="warning">Warning</BBadge>
-        <BBadge variant="info">Info</BBadge>
-        <BBadge variant="light">Light</BBadge>
-        <BBadge variant="dark">Dark</BBadge>
-        <hr>
-        <BAlert :model-value="true" variant="primary">Primary Alert</BAlert>
-        <BAlert :model-value="true" variant="secondary">Secondary Alert</BAlert>
-        <BAlert :model-value="true" variant="success">Success Alert</BAlert>
-        <BAlert :model-value="true" variant="danger">Danger Alert</BAlert>
-        <BAlert :model-value="true" variant="warning">Warning Alert</BAlert>
-        <BAlert :model-value="true" variant="info">Info Alert</BAlert>
-        <BAlert :model-value="true" variant="light">Light Alert</BAlert>
-        <BAlert :model-value="true" variant="dark">Dark Alert</BAlert>
+        <div>
+            <BButton variant="primary">Primary</BButton>
+            <BButton variant="secondary">Secondary</BButton>
+            <BButton variant="success">Success</BButton>
+            <BButton variant="danger">Danger</BButton>
+            <BButton variant="warning">Warning</BButton>
+            <BButton variant="info">Info</BButton>
+            <BButton variant="light">Light</BButton>
+            <BButton variant="dark">Dark</BButton>
+            <BSpinner type="grow" variant="primary" />
+            <BSpinner type="grow" variant="secondary" />
+            <BSpinner type="grow" variant="success" />
+            <BSpinner type="grow" variant="danger" />
+            <BSpinner type="grow" variant="warning" />
+            <BSpinner type="grow" variant="info" />
+            <BSpinner type="grow" variant="light" />
+            <BSpinner type="grow" variant="dark" />
+            <hr>
+            <BButton variant="outline-primary">Primary</BButton>
+            <BButton variant="outline-secondary">Secondary</BButton>
+            <BButton variant="outline-success">Success</BButton>
+            <BButton variant="outline-danger">Danger</BButton>
+            <BButton variant="outline-warning">Warning</BButton>
+            <BButton variant="outline-info">Info</BButton>
+            <BButton variant="outline-light">Light</BButton>
+            <BButton variant="outline-dark">Dark</BButton>
+            <hr>
+            <BBadge variant="primary">Primary</BBadge>
+            <BBadge variant="secondary">Secondary</BBadge>
+            <BBadge variant="success">Success</BBadge>
+            <BBadge variant="danger">Danger</BBadge>
+            <BBadge variant="warning">Warning</BBadge>
+            <BBadge variant="info">Info</BBadge>
+            <BBadge variant="light">Light</BBadge>
+            <BBadge variant="dark">Dark</BBadge>
+            <hr>
+            <BAlert :model-value="true" variant="primary">Primary Alert</BAlert>
+            <BAlert :model-value="true" variant="secondary">Secondary Alert</BAlert>
+            <BAlert :model-value="true" variant="success">Success Alert</BAlert>
+            <BAlert :model-value="true" variant="danger">Danger Alert</BAlert>
+            <BAlert :model-value="true" variant="warning">Warning Alert</BAlert>
+            <BAlert :model-value="true" variant="info">Info Alert</BAlert>
+            <BAlert :model-value="true" variant="light">Light Alert</BAlert>
+            <BAlert :model-value="true" variant="dark">Dark Alert</BAlert>
+        </div>
     </main>
-    <nav :class="['mde-nav', 'mde-nav-toc border-left border-body-secondary bg-body-tertiary', { active: activeNavToc }]">
+    <nav :class="['mde-nav', 'mde-nav-toc border-left border-body-secondary bg-body', { active: activeNavToc }]">
         <MDNavTree :navList="tocList" />
     </nav>
 </template>

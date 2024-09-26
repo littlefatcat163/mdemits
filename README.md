@@ -182,41 +182,10 @@ https://buefy.org/
 颜色设计不错，可以参考
 
 
-
-
-"primevue/button": "/node_modules/primevue/button/index.mjs",
-"primevue/config": "/node_modules/primevue/config/index.mjs",
-"primevue/badge": "/node_modules/primevue/badge/index.mjs",
-"primevue/ripple": "/node_modules/primevue/ripple/index.mjs",
-"primevue/button/style": "/node_modules/primevue/button/style/index.mjs",
-"@primeuix/utils/object": "/node_modules/@primeuix/utils/object/index.mjs",
-"@primevue/icons/spinner": "/node_modules/@primevue/icons/spinner/index.mjs",
-"@primevue/icons/baseicon": "/node_modules/@primevue/icons/baseicon/index.mjs",
-"@primevue/icons/baseicon/style": "/node_modules/@primevue/icons/baseicon/style/index.mjs",
-"@primevue/core/basecomponent": "/node_modules/@primevue/core/basecomponent/index.mjs",
-"@primeuix/styled": "/node_modules/@primeuix/styled/index.mjs",
-"@primeuix/utils/dom": "/node_modules/@primeuix/utils/dom/index.mjs",
-"@primevue/core/base": "/node_modules/@primevue/core/base/index.mjs",
-"@primevue/core/base/style": "/node_modules/@primevue/core/base/style/index.mjs",
-"@primevue/core/utils": "/node_modules/@primevue/core/utils/index.mjs",
-"@primeuix/utils/eventbus": "/node_modules/@primeuix/utils/eventbus/index.mjs",
-"@primevue/core/usestyle": "/node_modules/@primevue/core/usestyle/index.mjs",
-"@primeuix/utils": "/node_modules/@primeuix/utils/index.mjs",
-"@primeuix/utils/uuid": "/node_modules/@primeuix/utils/uuid/index.mjs",
-"@primeuix/utils/classnames": "/node_modules/@primeuix/utils/classnames/index.mjs",
-"@primeuix/utils/mergeprops": "/node_modules/@primeuix/utils/mergeprops/index.mjs",
-"@primeuix/utils/zindex": "/node_modules/@primeuix/utils/zindex/index.mjs",
-"primevue/badge/style": "/node_modules/primevue/badge/style/index.mjs",
-"@primevue/core/basedirective": "/node_modules/@primevue/core/basedirective/index.mjs",
-"primevue/ripple/style": "/node_modules/primevue/ripple/style/index.mjs",
-"@primevue/core/service": "/node_modules/@primevue/core/service/index.mjs",
-"@primevue/core/config": "/node_modules/@primevue/core/config/index.mjs",
-"@primevue/core/api": "/node_modules/@primevue/core/api/index.mjs"
-
-
-
 ## 左边导航菜单
 
 - 树形结构展开
+- 最终激活的是某个子集而已，可以考虑存放在sessionstorage，目前没什么必要放全部
+- 每次刷新页面，都读取当前页面id、连接所对应的位置即可
 - 跟着当前项目的配置来，在哪个目录下跑，就用哪个目录下的配置
 - 因为md文件名和实际想要显示的名字不一定对得上

@@ -1,6 +1,6 @@
 import esbuild from 'esbuild'
 import { clean } from 'esbuild-plugin-clean'
-import { copy } from 'esbuild-plugin-copy'
+import copy from 'esbuild-plugin-copy-watch'
 import { readFile } from 'fs/promises'
 import path from 'path'
 import pluginVue from 'esbuild-plugin-mdmits-vue'
@@ -31,10 +31,10 @@ import pluginVue from 'esbuild-plugin-mdmits-vue'
                 patterns: ['./dist/*', './dist/assets/*.map.js']
             }),
             copy({
-                assets: {
-                    from: ['./src/layout/**'],
-                    to: ['layout']
-                }
+                paths: [
+                    { from: 'src/layout/styles/*', to: 'layout/styles' },
+                    { from: ['src/layout/tmp_index.html', 'src/layout/tmp_index.ts'], to: 'layout' }
+                ]
             }),
             pluginVue(),
             {

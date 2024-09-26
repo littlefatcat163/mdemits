@@ -41,9 +41,7 @@
         :class="['mde-backdrop', { active: activeNavMenu || activeNavToc }]"
         @click="inactive"
     ></div>
-    <nav :class="['mde-nav', 'mde-nav-menu border-right border-body-secondary bg-body', { active: activeNavMenu }]">
-        <MDNavTree :navList="navList" />
-    </nav>
+    <MDENavMenu :active="activeNavMenu" :data="navList" />
     <main class="mde-main">
         <div>
             <BButton variant="primary">Primary</BButton>
@@ -110,31 +108,30 @@
             <p class="text-white-50 bg-dark">.text-white-50</p>
         </div>
     </main>
-    <nav :class="['mde-nav', 'mde-nav-toc border-left border-body-secondary bg-body', { active: activeNavToc }]">
-        <MDNavTree :navList="tocList" />
-    </nav>
+    <MDENavToc :active="activeNavToc" :data="tocList" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { BButton, BAlert, BBadge } from 'bootstrap-vue-next'
-import MDNavTree from './components/MDNavTree.vue'
-import type { NavTreeItem } from '../types'
-const navList: NavTreeItem[] = [
+import MDENavMenu from './components/MDENavMenu.vue'
+import MDENavToc from './components/MDENavToc.vue'
+import type { TreeItem } from '../types'
+const navList: TreeItem[] = [
     {
         text: '介绍',
-        href: '/#'
+        href: '/info'
     },
     {
         text: '安装',
         items: [
             {
                 text: '环境',
-                href: '/#/'
+                href: '/env'
             },
             {
                 text: '软件',
-                href: '/#/'
+                href: '/soft'
             }
         ]
     },
@@ -146,7 +143,7 @@ const navList: NavTreeItem[] = [
                 items: [
                     {
                         text: 'English and how to use this content',
-                        href: '/#/'
+                        href: '/asd'
                     },
                     {
                         text: 'very long, very long, very long, very very very very very very very long long long long',
@@ -209,7 +206,7 @@ const navList: NavTreeItem[] = [
         ]
     }
 ]
-const tocList: NavTreeItem[] = [
+const tocList: TreeItem[] = [
     {
         text: 'title1',
         href: '#',

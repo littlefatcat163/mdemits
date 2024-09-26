@@ -1,11 +1,7 @@
-export type NavTreeItem = {
+export type TreeItem = {
     text: string
+    id?: string
+    isFocusable?: boolean
     href?: string
-    items?: NavTreeItem[]
-}
-
-export type TocItem = {
-    title: string
-    href?: string
-    children?: TocItem[]
+    items?: TreeItem[]
 }

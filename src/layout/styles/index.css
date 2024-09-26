@@ -6,6 +6,7 @@
   --mde-main-bg: #f9f9f9;
 }
 .mde-header {
+  background: linear-gradient(45deg, #3e4075 0%, #222639 72%, #1b1f27 100%);
   height: var(--mde-header-height);
   position: fixed;
   top: 0;
@@ -68,13 +69,18 @@
   display: block;
 }
 .mde-nav {
+  padding: 0 1.5rem;
   position: fixed;
   overflow-y: auto;
   font-size: 0.875rem;
-  padding: 0 1.5rem;
   width: var(--mde-nav-width);
   transition: transform ease-in-out 180ms, top ease-in-out 180ms;
   max-height: calc(100vh);
+/* .mde-nav-flag
+        position absolute
+        width 0.125rem
+        height 1rem
+        background-color var(--bs-primary-text-emphasis) */
 }
 .mde-nav.active {
   transform: translateX(0);

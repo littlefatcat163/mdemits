@@ -1,6 +1,6 @@
 import { existsSync } from 'fs'
 import { isEmpty } from 'lodash-es'
-import { joinCwdPath } from './unitls'
+import { joinCwdPath } from './handle'
 
 function getModulePath(name: string) {
     const pathPrefixs = ['node_modules/.pnpm/node_modules', 'node_modules']

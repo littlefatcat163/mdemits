@@ -1,0 +1,1 @@
+.mde-nav-tree li [role=button]{color:var(--bs-body-color);opacity:.65}.mde-nav-tree li [role=button]:hover,.mde-nav-tree li [role=button].is-focusable{opacity:1;--bs-link-underline-opacity: 1;color:var(--bs-primary-text-emphasis)}

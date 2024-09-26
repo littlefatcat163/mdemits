@@ -21,6 +21,7 @@
     <MDENavMenu :active="activeNavMenu" :data="navList" />
     <main class="mde-main">
         <div>
+            <!-- Markdown -->
             <BButton variant="primary">Primary</BButton>
             <BButton variant="secondary">Secondary</BButton>
             <BButton variant="success">Success</BButton>
@@ -90,10 +91,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BButton, BAlert, BBadge } from 'bootstrap-vue-next'
-import MDEHeader from './components/MDEHeader.vue'
-import MDENavMenu from './components/MDENavMenu.vue'
-import MDENavToc from './components/MDENavToc.vue'
+import { BButton, BAlert, BBadge, MDEHeader, MDENavMenu, MDENavToc } from 'ui'
 import type { TreeItem } from '../types'
 const navList: TreeItem[] = [
     {

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { shallowReactive } from 'vue'
+import { shallowReactive, onBeforeMount } from 'vue'
 import { treeNodeRegisterId, treeNodeExpand } from '../../utils/tree'
 import type { TreeItem } from '../../types'
 import MDENavTree from './MDENavTree.vue'
@@ -23,7 +23,11 @@ const props = defineProps<{
 }>()
 
 const treeData = treeNodeRegisterId(props.data)
-const collapseds = shallowReactive(treeNodeExpand(treeData, location.pathname))
+const collapseds = shallowReactive(new Set<string>())
+// const collapseds = shallowReactive(treeNodeExpand(treeData, location.pathname))
+onBeforeMount(() => {
+
+})
 const handleClick = (event: MouseEvent) => {
     const target = event.target as HTMLElement
     if (target.tagName === 'SPAN') {

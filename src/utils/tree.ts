@@ -21,7 +21,7 @@ export function treeNodeRegisterId(data: TreeItem[]): TreeItem[] {
 }
 
 export function treeNodeExpand(data: TreeItem[], href: string) {
-    let collapseds: Set<string>
+    let collapseds: Set<string> = new Set()
     type TreeStack = {
         node: TreeItem
         parents: string[]
@@ -41,5 +41,5 @@ export function treeNodeExpand(data: TreeItem[], href: string) {
             )
         }
     }
-    return collapseds!
+    return collapseds
 }

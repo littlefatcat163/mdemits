@@ -7,7 +7,7 @@
   "bin": "bin/mdemits.js",
   "scripts": {
     "build": "node scripts/build.js",
-    "build:lib": "",
+    "build:ui": "vite build",
     "scss": "sass --no-source-map --watch src/layout/stylus/bootstrap.scss src/layout/styles/bootstrap.css",
     "stylus": "stylus src/layout/stylus --out src/layout/styles -w",
     "dev": "vite",

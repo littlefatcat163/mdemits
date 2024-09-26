@@ -33,7 +33,8 @@ import pluginVue from 'esbuild-plugin-mdmits-vue'
             copy({
                 paths: [
                     { from: 'src/layout/styles/*', to: 'layout/styles' },
-                    { from: ['src/layout/tmp_index.html', 'src/layout/tmp_index.ts'], to: 'layout' }
+                    { from: 'src/layout/ui/*', to: 'layout/ui' },
+                    { from: ['src/layout/tmp_index.html', 'src/layout/tmp_index.ts', 'src/layout/tmp_app.vue'], to: 'layout' }
                 ]
             }),
             pluginVue(),

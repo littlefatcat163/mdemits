@@ -23,7 +23,7 @@ export function build(options: BuildOptions) {
             }) */
 
         ],
-        external: ['vue'],
+        external: ['vue', 'ui'],
         format: 'esm',
         target: [
             'esnext'

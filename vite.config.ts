@@ -10,7 +10,7 @@ export default defineConfig({
     cssCodeSplit: false,
     outDir: 'ui',
     lib: {
-      entry: ['components/index.ts', 'components/test.ts'],
+      entry: ['components/index.ts'],
       formats: ['es'],
       // fileName: 'index',
       name: 'ui'
@@ -19,7 +19,7 @@ export default defineConfig({
       output: {
         format: 'esm'
       },
-      external: ['vue']
+      external: ['vue', 'clipboard']
     }
   }
 })

@@ -1,5 +1,6 @@
 /coverage
 /src/layout/styles
+/src/layout/ui
 *.log
 *.tgz
 .DS_Store

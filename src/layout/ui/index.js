@@ -1,4 +1,4 @@
-import { getCurrentScope as $e, onScopeDispose as Le, unref as u, ref as H, isRef as Oe, watch as G, readonly as E, inject as ae, computed as c, shallowRef as Ne, watchEffect as Be, getCurrentInstance as be, provide as He, useId as Ie, toValue as M, defineComponent as A, h as T, Teleport as Pe, openBlock as g, createBlock as w, Transition as Me, mergeProps as P, withCtx as F, renderSlot as x, createElementBlock as L, useSlots as ye, resolveDynamicComponent as O, normalizeClass as I, createTextVNode as z, toDisplayString as D, createCommentVNode as j, toRef as le, useAttrs as De, mergeModels as W, useModel as ge, Fragment as re, createVNode as U, onMounted as Ve, nextTick as Ee, createElementVNode as Q, createStaticVNode as ie, resolveComponent as ze, renderList as Re, shallowReactive as he, onBeforeMount as je } from "vue";
+import { getCurrentScope as $e, onScopeDispose as Le, unref as u, ref as I, isRef as Oe, watch as G, readonly as E, inject as ae, computed as c, shallowRef as Ne, watchEffect as Be, getCurrentInstance as be, provide as Ie, useId as He, toValue as M, defineComponent as S, h as T, Teleport as Pe, openBlock as g, createBlock as w, Transition as Me, mergeProps as P, withCtx as F, renderSlot as x, createElementBlock as L, useSlots as ye, resolveDynamicComponent as O, normalizeClass as H, createTextVNode as z, toDisplayString as D, createCommentVNode as j, toRef as le, useAttrs as De, mergeModels as W, useModel as ge, Fragment as re, createVNode as U, onMounted as Ve, nextTick as Ee, createElementVNode as Q, createStaticVNode as ie, resolveComponent as ze, renderList as Re, shallowReactive as he, onBeforeMount as je } from "vue";
 const Ge = Symbol("bvn::collapse"), Xe = Symbol("bvn::navbar"), Y = Symbol("bvn::defaults");
 function K(t) {
   return $e() ? (Le(t), !0) : !1;
@@ -16,7 +16,7 @@ function Ue(t, a = 1e3, o = {}) {
     immediateCallback: l = !1
   } = o;
   let n = null;
-  const s = H(!1);
+  const s = I(!1);
   function r() {
     n && (clearInterval(n), n = null);
   }
@@ -89,7 +89,7 @@ function Ye(t, a = {}) {
     immediate: o = !0,
     fpsLimit: e = void 0,
     window: l = J
-  } = a, n = H(!1), s = e ? 1e3 / e : null;
+  } = a, n = I(!1), s = e ? 1e3 / e : null;
   let r = 0, i = null;
   function d(_) {
     if (!n.value || !l)
@@ -119,7 +119,7 @@ function et(t, a = {}) {
     delayEnter: o = 0,
     delayLeave: e = 0,
     window: l = J
-  } = a, n = H(!1);
+  } = a, n = I(!1);
   let s;
   const r = (i) => {
     const d = i ? o : e;
@@ -134,7 +134,7 @@ function tt(t = {}) {
     immediate: e = !0,
     interval: l = "requestAnimationFrame",
     callback: n
-  } = t, s = H(de() + o), r = () => s.value = de() + o, i = n ? () => {
+  } = t, s = I(de() + o), r = () => s.value = de() + o, i = n ? () => {
     r(), n(s.value);
   } : r, d = l === "requestAnimationFrame" ? Ye(i, { immediate: e }) : Ue(i, l, { immediate: e });
   return a ? {
@@ -178,7 +178,7 @@ const lt = (t, a) => {
   return typeof ((o = t.props) == null ? void 0 : o[a]) < "u" || typeof ((e = t.props) == null ? void 0 : e[at(a)]) < "u";
 };
 function nt(t = {}, a) {
-  const o = ae(Y, H({})), e = Ce("useDefaults");
+  const o = ae(Y, I({})), e = Ce("useDefaults");
   if (a = a ?? e.type.name ?? e.type.__name, !a)
     throw new Error("[Bvn] Could not determine component name");
   const l = c(() => {
@@ -202,7 +202,7 @@ function nt(t = {}, a) {
   });
   function r() {
     const i = ot(Y, e);
-    He(
+    Ie(
       Y,
       c(
         () => s.value ? _e((i == null ? void 0 : i.value) ?? {}, s.value) : i == null ? void 0 : i.value
@@ -216,7 +216,7 @@ function N(t, a) {
   return e(), o;
 }
 const V = (t, a) => {
-  const o = Ie();
+  const o = He();
   return c(() => M(t) || `__BVID__${o}___BV_${a}__`);
 }, st = (t, a = {}) => {
   const o = (l = []) => {
@@ -235,7 +235,7 @@ const V = (t, a) => {
   const a = t.getBoundingClientRect();
   return !!(a && a.height > 0 && a.width > 0);
 }, it = typeof window < "u" && typeof document < "u" && typeof navigator < "u";
-A({
+S({
   name: "ConditionalTeleport",
   inheritAttrs: !1,
   slots: Object,
@@ -259,7 +259,7 @@ A({
 const dt = (t, a) => [...a].reduce(
   (o, e) => (o[e] = t[e], o),
   {}
-), ut = /* @__PURE__ */ A({
+), ut = /* @__PURE__ */ S({
   __name: "BTransition",
   props: {
     appear: { type: Boolean, default: !1 },
@@ -306,7 +306,7 @@ const dt = (t, a) => [...a].reduce(
       _: 3
     }, 16, ["appear"]));
   }
-}), ct = ["type", "disabled", "aria-label"], pt = /* @__PURE__ */ A({
+}), ct = ["type", "disabled", "aria-label"], pt = /* @__PURE__ */ S({
   __name: "BCloseButton",
   props: {
     ariaLabel: { default: "Close" },
@@ -327,7 +327,7 @@ const dt = (t, a) => [...a].reduce(
 }), ft = {
   key: 0,
   class: "visually-hidden"
-}, vt = /* @__PURE__ */ A({
+}, vt = /* @__PURE__ */ S({
   __name: "BSpinner",
   props: {
     label: { default: void 0 },
@@ -346,7 +346,7 @@ const dt = (t, a) => [...a].reduce(
       }
     ]), n = c(() => !ke(e.label));
     return (s, r) => (g(), w(O(u(o).tag), {
-      class: I(l.value),
+      class: H(l.value),
       role: u(o).label || n.value ? u(o).role : null,
       "aria-hidden": u(o).label || n.value ? null : !0
     }, {
@@ -360,7 +360,7 @@ const dt = (t, a) => [...a].reduce(
       _: 3
     }, 8, ["class", "role", "aria-hidden"]));
   }
-}), mt = (t) => !!(t.href || t.to), Se = (t, a) => {
+}), mt = (t) => !!(t.href || t.to), Ae = (t, a) => {
   const o = E(le(a)), e = E(le(t)), l = c(() => mt(e.value)), n = c(
     () => l.value ? dt(
       e.value,
@@ -386,7 +386,7 @@ const dt = (t, a) => [...a].reduce(
     ) : {}
   );
   return { computedLink: l, computedLinkProps: n };
-}, Ae = (t) => c(() => {
+}, Se = (t) => c(() => {
   const a = M(t);
   return {
     [`link-${a.variant}`]: a.variant !== null,
@@ -400,7 +400,7 @@ const dt = (t, a) => [...a].reduce(
     [`link-underline-opacity-${a.underlineOpacityHover}-hover`]: a.underlineOpacityHover !== void 0,
     "icon-link": a.icon === !0
   };
-}), ce = "active", we = /* @__PURE__ */ A({
+}), ce = "active", we = /* @__PURE__ */ S({
   __name: "BLink",
   props: {
     active: { type: Boolean, default: void 0 },
@@ -440,11 +440,11 @@ const dt = (t, a) => [...a].reduce(
         const C = p.path || "", m = p.query ? `?${Object.keys(p.query).map((B) => {
           var $;
           return `${B}=${($ = p.query) == null ? void 0 : $[B]}`;
-        }).join("=")}` : "", S = !p.hash || p.hash.charAt(0) === "#" ? p.hash || "" : `#${p.hash}`;
-        return `${C}${m}${S}` || v;
+        }).join("=")}` : "", A = !p.hash || p.hash.charAt(0) === "#" ? p.hash || "" : `#${p.hash}`;
+        return `${C}${m}${A}` || v;
       }
       return v;
-    }), h = Ae(e), _ = c(() => [
+    }), h = Se(e), _ = c(() => [
       h.value,
       {
         "stretched-link": e.stretched === !0
@@ -470,13 +470,13 @@ const dt = (t, a) => [...a].reduce(
       (((p = s == null ? void 0 : s.isNav) == null ? void 0 : p.value) === !0 && r === null || r !== null && ((C = r.autoClose) == null ? void 0 : C.value) === !0) && ((m = s == null ? void 0 : s.hide) == null || m.call(s)), l("click", v);
     };
     return (v, p) => d.value === "router-link" ? (g(), w(O(d.value), P({ key: 0 }, k.value, { custom: "" }), {
-      default: F(({ href: C, navigate: m, isActive: S, isExactActive: B }) => [
+      default: F(({ href: C, navigate: m, isActive: A, isExactActive: B }) => [
         (g(), w(O(u(e).routerTag), P({
           href: C,
           target: u(e).target,
           class: {
             [ce]: u(e).active,
-            [u(e).activeClass]: S,
+            [u(e).activeClass]: A,
             [u(e).exactActiveClass]: B
           }
         }, v.$attrs, {
@@ -501,7 +501,7 @@ const dt = (t, a) => [...a].reduce(
       _: 3
     }, 16, ["class"]));
   }
-}), Bt = /* @__PURE__ */ A({
+}), Bt = /* @__PURE__ */ S({
   __name: "BButton",
   props: /* @__PURE__ */ W({
     loading: { type: Boolean, default: !1 },
@@ -540,7 +540,7 @@ const dt = (t, a) => [...a].reduce(
   }),
   emits: /* @__PURE__ */ W(["click"], ["update:pressed"]),
   setup(t, { emit: a }) {
-    const e = N(t, "BButton"), l = a, n = H(null), s = ge(t, "pressed"), { computedLink: r, computedLinkProps: i } = Se(e, [
+    const e = N(t, "BButton"), l = a, n = I(null), s = ge(t, "pressed"), { computedLink: r, computedLinkProps: i } = Ae(e, [
       "active-class",
       "exact-active-class",
       "replace",
@@ -554,7 +554,7 @@ const dt = (t, a) => [...a].reduce(
     }), v = c(() => {
       var B;
       return ((B = e.variant) == null ? void 0 : B.startsWith("link-")) || !1;
-    }), p = Ae(
+    }), p = Se(
       c(() => {
         var B;
         return {
@@ -581,7 +581,7 @@ const dt = (t, a) => [...a].reduce(
         "rounded-0": e.squared,
         disabled: e.disabled
       }
-    ]), m = c(() => h.value ? we : e.href ? "a" : e.tag), S = (B) => {
+    ]), m = c(() => h.value ? we : e.href ? "a" : e.tag), A = (B) => {
       if (e.disabled) {
         B.preventDefault(), B.stopPropagation();
         return;
@@ -611,7 +611,7 @@ const dt = (t, a) => [...a].reduce(
       target: u(r) ? u(e).target : null,
       type: f.value ? u(e).type : null,
       to: f.value ? null : u(e).to,
-      onClick: S
+      onClick: A
     }), {
       default: F(() => [
         u(e).loading ? x(B.$slots, "loading", { key: 0 }, () => [
@@ -630,7 +630,7 @@ const dt = (t, a) => [...a].reduce(
     }, 16, ["class", "aria-disabled", "aria-pressed", "autocomplete", "disabled", "href", "rel", "role", "target", "type", "to"]));
   }
 }), bt = (t, a, o = {}) => {
-  const e = E(le(t)), l = H(!1), n = H(Date.now() + e.value), { isActive: s, pause: r, resume: i, timestamp: d } = tt({
+  const e = E(le(t)), l = I(!1), n = I(Date.now() + e.value), { isActive: s, pause: r, resume: i, timestamp: d } = tt({
     interval: a,
     controls: !0,
     callback: (b) => {
@@ -681,7 +681,7 @@ const dt = (t, a) => [...a].reduce(
   for (const [e, l] of a)
     o[e] = l;
   return o;
-}, ht = /* @__PURE__ */ A({
+}, ht = /* @__PURE__ */ S({
   __name: "BAlert",
   props: /* @__PURE__ */ W({
     closeClass: { default: void 0 },
@@ -702,7 +702,7 @@ const dt = (t, a) => [...a].reduce(
   }),
   emits: /* @__PURE__ */ W(["close", "close-countdown", "closed"], ["update:modelValue"]),
   setup(t, { expose: a, emit: o }) {
-    const l = N(t, "BAlert"), n = o, s = ye(), r = H(null), i = ge(t, "modelValue"), d = c(() => !ke(s.close)), f = c(
+    const l = N(t, "BAlert"), n = o, s = ye(), r = I(null), i = ge(t, "modelValue"), d = c(() => !ke(s.close)), f = c(
       () => typeof i.value == "boolean" ? 0 : i.value
     ), h = c(() => ({
       [`alert-${l.variant}`]: l.variant !== null,
@@ -726,7 +726,7 @@ const dt = (t, a) => [...a].reduce(
       })),
       { pause: y, resume: b }
     );
-    const S = c(
+    const A = c(
       () => typeof i.value == "boolean" ? i.value : k.value || l.showOnPause && p.value
     ), B = c(() => ({
       variant: d.value ? l.closeVariant : void 0,
@@ -748,11 +748,11 @@ const dt = (t, a) => [...a].reduce(
       "trans-props": { enterToClass: "show" }
     }, {
       default: F(() => [
-        S.value ? (g(), L("div", {
+        A.value ? (g(), L("div", {
           key: 0,
           ref_key: "element",
           ref: r,
-          class: I(["alert", h.value]),
+          class: H(["alert", h.value]),
           role: "alert",
           "aria-live": "polite",
           "aria-atomic": "true"
@@ -788,7 +788,7 @@ const dt = (t, a) => [...a].reduce(
     [`text-${a.textVariant}`]: a.textVariant !== null,
     [`bg-${a.bgVariant}`]: a.bgVariant !== null
   };
-}), _t = A({
+}), _t = S({
   name: "ConditionalWrapper",
   inheritAttrs: !1,
   slots: Object,
@@ -808,7 +808,7 @@ const dt = (t, a) => [...a].reduce(
       return t.skip ? (e = a.default) == null ? void 0 : e.call(a, {}) : T(t.tag, { ...o }, [(l = a.default) == null ? void 0 : l.call(a, {})]);
     };
   }
-}), Gt = /* @__PURE__ */ A({
+}), Gt = /* @__PURE__ */ S({
   __name: "BBadge",
   props: {
     dotIndicator: { type: Boolean, default: !1 },
@@ -840,7 +840,7 @@ const dt = (t, a) => [...a].reduce(
     textVariant: { default: null }
   },
   setup(t) {
-    const o = N(t, "BBadge"), e = Ct(o), { computedLink: l, computedLinkProps: n } = Se(o, [
+    const o = N(t, "BBadge"), e = Ct(o), { computedLink: l, computedLinkProps: n } = Ae(o, [
       "active",
       "activeClass",
       "append",
@@ -905,7 +905,7 @@ const dt = (t, a) => [...a].reduce(
   }
 }), te = (t, a, o, e = o) => a.reduce((l, n) => (t[n] && l.push(
   [e, n.replace(o, ""), t[n]].filter((s) => s && typeof s != "boolean").join("-").toLowerCase()
-), l), []), q = /* @__PURE__ */ A({
+), l), []), q = /* @__PURE__ */ S({
   __name: "BCol",
   props: {
     alignSelf: { default: void 0 },
@@ -978,7 +978,7 @@ const dt = (t, a) => [...a].reduce(
       }
     ]);
     return (n, s) => (g(), w(O(u(o).tag), {
-      class: I(l.value)
+      class: H(l.value)
     }, {
       default: F(() => [
         x(n.$slots, "default")
@@ -986,7 +986,7 @@ const dt = (t, a) => [...a].reduce(
       _: 3
     }, 8, ["class"]));
   }
-}), pe = /* @__PURE__ */ A({
+}), pe = /* @__PURE__ */ S({
   __name: "BFormInvalidFeedback",
   props: {
     ariaLive: { default: void 0 },
@@ -1009,7 +1009,7 @@ const dt = (t, a) => [...a].reduce(
       role: u(o).role,
       "aria-live": u(o).ariaLive,
       "aria-atomic": u(o).ariaLive ? !0 : void 0,
-      class: I(l.value)
+      class: H(l.value)
     }, {
       default: F(() => [
         x(n.$slots, "default", {}, () => [
@@ -1019,7 +1019,7 @@ const dt = (t, a) => [...a].reduce(
       _: 3
     }, 8, ["id", "role", "aria-live", "aria-atomic", "class"]));
   }
-}), oe = /* @__PURE__ */ A({
+}), oe = /* @__PURE__ */ S({
   __name: "BFormRow",
   props: {
     tag: { default: "div" }
@@ -1033,7 +1033,7 @@ const dt = (t, a) => [...a].reduce(
       _: 3
     }));
   }
-}), fe = /* @__PURE__ */ A({
+}), fe = /* @__PURE__ */ S({
   __name: "BFormText",
   props: {
     id: { default: void 0 },
@@ -1049,7 +1049,7 @@ const dt = (t, a) => [...a].reduce(
     }));
     return (l, n) => (g(), w(O(u(o).tag), {
       id: u(o).id,
-      class: I(e.value)
+      class: H(e.value)
     }, {
       default: F(() => [
         x(l.$slots, "default", {}, () => [
@@ -1059,7 +1059,7 @@ const dt = (t, a) => [...a].reduce(
       _: 3
     }, 8, ["id", "class"]));
   }
-}), ve = /* @__PURE__ */ A({
+}), ve = /* @__PURE__ */ S({
   __name: "BFormValidFeedback",
   props: {
     ariaLive: { default: void 0 },
@@ -1082,7 +1082,7 @@ const dt = (t, a) => [...a].reduce(
       role: u(o).role,
       "aria-live": u(o).ariaLive,
       "aria-atomic": u(o).ariaLive ? !0 : void 0,
-      class: I(l.value)
+      class: H(l.value)
     }, {
       default: F(() => [
         x(n.$slots, "default", {}, () => [
@@ -1095,13 +1095,13 @@ const dt = (t, a) => [...a].reduce(
 }), kt = (t, a) => c(() => {
   const o = M(t), e = M(a);
   return o === !0 ? "true" : typeof o == "string" ? o : e === !1 ? "true" : o === !1 ? "false" : void 0;
-}), St = (t) => c(() => {
+}), At = (t) => c(() => {
   const a = M(t);
   return a === !0 ? "is-valid" : a === !1 ? "is-invalid" : null;
-}), At = (t) => {
+}), St = (t) => {
   const a = t.trim();
   return a.charAt(0).toUpperCase() + a.slice(1);
-}, me = (t, a) => a + (t ? At(t) : ""), R = (t, a = {}, o = {}) => {
+}, me = (t, a) => a + (t ? St(t) : ""), R = (t, a = {}, o = {}) => {
   const e = [t];
   let l;
   for (let n = 0; n < e.length && !l; n++) {
@@ -1110,7 +1110,7 @@ const dt = (t, a) => [...a].reduce(
   }
   return l && typeof l == "function" ? l(a) : l;
 }, Te = ["input", "select", "textarea"], wt = Te.map((t) => `${t}:not([disabled])`).join(), Tt = [...Te, "a", "button", "label"], Ft = "label", xt = "invalid-feedback", $t = "valid-feedback", Lt = "description", Ot = "default";
-A({
+S({
   components: { BCol: q, BFormInvalidFeedback: pe, BFormRow: oe, BFormText: fe, BFormValidFeedback: ve },
   props: {
     ariaInvalid: { type: [Boolean, String], default: void 0 },
@@ -1155,17 +1155,17 @@ A({
         const C = me(p === "xs" ? "" : p, `${b}Cols`);
         let m = y[C];
         if (m = m === "" ? !0 : m || !1, typeof m != "boolean" && m !== "auto") {
-          const S = Number.parseInt(m);
-          m = Number.isNaN(S) ? 0 : S, m = m > 0 ? m : !1;
+          const A = Number.parseInt(m);
+          m = Number.isNaN(A) ? 0 : A, m = m > 0 ? m : !1;
         }
         return m && (p === "xs" ? v[typeof m == "boolean" ? "col" : "cols"] = m : v[p || (typeof m == "boolean" ? "col" : "cols")] = m), v;
       }, {})
-    ), n = H(null), s = (y, b = null) => {
+    ), n = I(null), s = (y, b = null) => {
       if (it && t.labelFor && n.value !== null) {
         const v = n.value.querySelector(`#${CSS.escape(t.labelFor)}`);
         if (v) {
-          const p = "aria-describedby", C = (y || "").split(ee), m = (b || "").split(ee), S = (v.getAttribute(p) || "").split(ee).filter((B) => !m.includes(B)).concat(C).filter((B, $, X) => X.indexOf(B) === $).filter((B) => B).join(" ").trim();
-          S ? v.setAttribute(p, S) : v.removeAttribute(p);
+          const p = "aria-describedby", C = (y || "").split(ee), m = (b || "").split(ee), A = (v.getAttribute(p) || "").split(ee).filter((B) => !m.includes(B)).concat(C).filter((B, $, X) => X.indexOf(B) === $).filter((B) => B).join(" ").trim();
+          A ? v.setAttribute(p, A) : v.removeAttribute(p);
         }
       }
     }, r = c(() => l(t, "content")), i = c(() => e(t, "label")), d = c(() => l(t, "label")), f = c(
@@ -1174,7 +1174,7 @@ A({
         // based on the existence of 'content-col' or 'label-col' props
         Object.keys(r.value).length > 0 || Object.keys(d.value).length > 0
       )
-    ), h = St(() => t.state), _ = kt(
+    ), h = At(() => t.state), _ = kt(
       () => t.ariaInvalid,
       () => t.state
     );
@@ -1209,10 +1209,10 @@ A({
     let l = null;
     const n = R(Ft, {}, a) || t.label, s = n ? V(void 0, "_BV_label_").value : null;
     if (n || this.isHorizontal) {
-      const S = e ? "legend" : "label";
+      const A = e ? "legend" : "label";
       if (t.labelVisuallyHidden)
         n && (l = T(
-          S,
+          A,
           {
             class: "visually-hidden",
             id: s,
@@ -1224,7 +1224,7 @@ A({
         const B = {
           onClick: e ? this.onLegendClick : null,
           ...this.isHorizontal ? this.labelColProps : {},
-          tag: this.isHorizontal ? S : null,
+          tag: this.isHorizontal ? A : null,
           id: s,
           for: t.labelFor || null,
           tabIndex: e ? "-1" : null,
@@ -1241,7 +1241,7 @@ A({
             t.labelClass
           ]
         };
-        this.isHorizontal ? l = T(q, B, { default: () => n }) : l = T(S, B, n);
+        this.isHorizontal ? l = T(q, B, { default: () => n }) : l = T(A, B, n);
       }
     }
     let r = null;
@@ -1282,7 +1282,7 @@ A({
       b,
       t.state === !1 ? d : null,
       t.state === !0 ? _ : null
-    ].filter((S) => S).join(" ") || null, p = [
+    ].filter((A) => A).join(" ") || null, p = [
       R(Ot, { ariaDescribedby: v, descriptionId: b, id: o, labelId: s }, a) || "",
       r,
       f,
@@ -1431,7 +1431,7 @@ const Nt = {
 Object.freeze(
   Object.keys(Nt)
 );
-const Ht = {
+const It = {
   vBColorMode: "/directives/BColorMode",
   vBModal: "/directives/BModal",
   vBPopover: "/directives/BPopover",
@@ -1440,9 +1440,9 @@ const Ht = {
   vBTooltip: "/directives/BTooltip"
 };
 Object.freeze(
-  Object.keys(Ht)
+  Object.keys(It)
 );
-const It = {
+const Ht = {
   useBreadcrumb: "/composables/useBreadcrumb",
   useColorMode: "/composables/useColorMode",
   useModal: "/composables/useModal",
@@ -1453,15 +1453,16 @@ const It = {
   useTooltip: "/composables/useTooltip"
 };
 Object.freeze(
-  Object.keys(It)
+  Object.keys(Ht)
 );
-const Pt = { class: "mde-header border-bottom border-body-secondary text-light d-flex align-items-center px-4" }, Xt = /* @__PURE__ */ A({
+const Pt = { class: "mde-header border-bottom border-body-secondary text-light d-flex align-items-center px-4" }, Xt = /* @__PURE__ */ S({
   __name: "MDEHeader",
   setup(t) {
     let a = !1;
     function o() {
-      var e;
-      a = !a, (e = document.querySelector("html")) == null || e.setAttribute("data-bs-theme", a ? "dark" : "light");
+      a = !a;
+      const e = document.querySelector("html"), l = document.getElementById("highlight-css"), n = document.getElementById("highlight-css-dark");
+      a ? (e.setAttribute("data-bs-theme", "dark"), l.setAttribute("disabled", ""), n.removeAttribute("disabled")) : (e.setAttribute("data-bs-theme", "light"), n.setAttribute("disabled", ""), l.removeAttribute("disabled"));
     }
     return (e, l) => (g(), L("header", Pt, [
       l[2] || (l[2] = Q("div", {
@@ -1494,7 +1495,7 @@ function Fe(t) {
   }
   return t;
 }
-const Mt = { class: "list-unstyled mde-nav-tree" }, Dt = { class: "py-1" }, Vt = ["href"], Et = ["data-id"], xe = /* @__PURE__ */ A({
+const Mt = { class: "list-unstyled mde-nav-tree" }, Dt = { class: "py-1" }, Vt = ["href"], Et = ["data-id"], xe = /* @__PURE__ */ S({
   __name: "MDENavTree",
   props: {
     data: {},
@@ -1508,7 +1509,7 @@ const Mt = { class: "list-unstyled mde-nav-tree" }, Dt = { class: "py-1" }, Vt =
           n ? (g(), L("a", {
             key: 0,
             role: "button",
-            class: I([
+            class: H([
               "link-offset-2",
               "link-underline",
               "link-underline-opacity-0",
@@ -1525,13 +1526,13 @@ const Mt = { class: "list-unstyled mde-nav-tree" }, Dt = { class: "py-1" }, Vt =
             key: 2,
             data: s,
             collapseds: a.collapseds,
-            class: I(["ps-3", { "d-none": !a.collapseds.has(r) }])
+            class: H(["ps-3", { "d-none": !a.collapseds.has(r) }])
           }, null, 8, ["data", "collapseds", "class"])) : j("", !0)
         ]))), 256))
       ]);
     };
   }
-}), qt = /* @__PURE__ */ A({
+}), qt = /* @__PURE__ */ S({
   __name: "MDENavMenu",
   props: {
     data: {},
@@ -1549,7 +1550,7 @@ const Mt = { class: "list-unstyled mde-nav-tree" }, Dt = { class: "py-1" }, Vt =
       }
     };
     return (n, s) => (g(), L("nav", {
-      class: I([
+      class: H([
         "mde-nav",
         "mde-nav-menu border-right border-body-secondary bg-body",
         { active: n.active }
@@ -1562,7 +1563,7 @@ const Mt = { class: "list-unstyled mde-nav-tree" }, Dt = { class: "py-1" }, Vt =
       }, null, 8, ["data", "collapseds"])
     ], 2));
   }
-}), Wt = /* @__PURE__ */ A({
+}), Wt = /* @__PURE__ */ S({
   __name: "MDENavToc",
   props: {
     data: {},
@@ -1577,7 +1578,7 @@ const Mt = { class: "list-unstyled mde-nav-tree" }, Dt = { class: "py-1" }, Vt =
       }
     };
     return (n, s) => (g(), L("nav", {
-      class: I(["mde-nav", "mde-nav-toc border-left border-body-secondary bg-body", { active: n.active }]),
+      class: H(["mde-nav", "mde-nav-toc border-left border-body-secondary bg-body", { active: n.active }]),
       onClick: l
     }, [
       U(xe, {

@@ -10,7 +10,8 @@ import { createMarkdownRender } from '../markdown'
 import { htmlTemplate } from '../handle'
 import { build } from '../build'
 import { mdEmitsConfig } from '../config'
-import * as UI from '../layout/ui'
+// @ts-ignore
+import * as UI from 'ui'
 import type { TreeItem } from '../types'
 
 const navList: TreeItem[] = [

@@ -25,6 +25,7 @@ import pluginVue from 'esbuild-plugin-mdmits-vue'
         },
         external: [
             ...Object.keys(pkg.dependencies),
+            'ui'
         ],
         plugins: [
             clean({
@@ -38,6 +39,19 @@ import pluginVue from 'esbuild-plugin-mdmits-vue'
                 ]
             }),
             pluginVue(),
+            {
+                name: 'ui',
+                setup(build) {
+                    build.onResolve({ filter: /.*/ }, (args) => {
+                        if (args.path === 'ui') {
+                            return {
+                                path: './layout/ui/index.js',
+                                external: true
+                            }
+                        }
+                    })
+                }
+            },
             {
                 name: 'only-text',
                 setup(build) {

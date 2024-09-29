@@ -19,7 +19,7 @@ export default defineConfig({
       output: {
         format: 'esm'
       },
-      external: ['vue', 'clipboard']
+      external: ['vue']
     }
   }
 })

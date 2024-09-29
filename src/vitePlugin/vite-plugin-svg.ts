@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from 'fs'
 import type { Plugin } from 'vite'
 import { minify } from 'html-minifier'
 
-export function findSvg(dir: string) {
+export function scanSvg(dir: string) {
     const svgs: string[] = []
     const dirents = readdirSync(dir, {
         withFileTypes: true,
@@ -24,7 +24,7 @@ export function findSvg(dir: string) {
                 minify(svg, {
                     collapseWhitespace: true,
                     removeAttributeQuotes: true,
-                    keepClosingSlash: true
+                    keepClosingSlash: true,
                 })
             )
         }
@@ -33,16 +33,17 @@ export function findSvg(dir: string) {
     return svgs
 }
 
+export function svgsHTML(svgs: string[]) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;overflow:hidden;width:0;height:0"><defs>${svgs.join(
+        ''
+    )}</defs></svg>`
+}
+
 export default function vitePluginSvg(dir: string): Plugin {
     return {
         name: 'svg-transform',
         transformIndexHtml(html: string): string {
-            return html.replace(
-                '<!-- svg-defs -->',
-                `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;overflow:hidden;width:0;height:0"><defs>${findSvg(
-                    dir
-                ).join('')}</defs></svg>`
-            )
+            return html.replace('<!-- svg-defs -->', svgsHTML(scanSvg(dir)))
         },
     }
 }

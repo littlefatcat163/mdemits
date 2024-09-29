@@ -1,6 +1,7 @@
 import { normalizePath } from 'vite'
 import path from 'path'
 import { readFile } from 'fs/promises'
+import { scanSvg, svgsHTML } from './vitePlugin/vite-plugin-svg'
 
 export function joinCwdPath(...paths: string[]): string {
     return normalizePath(path.join(process.cwd(), ...paths))
@@ -21,9 +22,11 @@ export async function htmlTemplate() {
             LAYOUT_VUE_TEMPLATE,
         }
     }
-    INDEX_HTML = await readFile(
-        joinMdemitsDistPath('layout', 'tmp_index.html'),
-        'utf-8'
+    INDEX_HTML = (
+        await readFile(joinMdemitsDistPath('layout', 'tmp_index.html'), 'utf-8')
+    ).replace(
+        '<!-- svg-defs -->',
+        svgsHTML(scanSvg(joinMdemitsDistPath('layout/icons')))
     )
     INDEX_TS = await readFile(
         joinMdemitsDistPath('layout', 'tmp_index.ts'),

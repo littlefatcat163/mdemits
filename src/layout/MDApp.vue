@@ -23,8 +23,34 @@
         <div>
             <p>code</p>
             <hr>
-            <MDECode />
-            <MDECode />
+            <MDECode lang="js"><pre><div class="hljs"><span class="hljs-keyword">var</span> getUserInfo = <span class="hljs-keyword">function</span>(<span class="hljs-params">userId, callback</span>) {
+    $.<span class="hljs-title function_">ajax</span>(<span class="hljs-string">&#x27;http://xxx?&#x27;</span> + userId, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">&#x27;function&#x27;</span>) {
+            <span class="hljs-title function_">callback</span>(data);
+        }
+    });
+}
+
+<span class="hljs-title function_">getUserInfo</span>(<span class="hljs-number">13157</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data.<span class="hljs-property">userName</span>);
+});
+</div></pre></MDECode>
+            <MDECode lang="html">
+                <pre><div class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- and it's easy to individually load additional languages --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>hljs.highlightAll();<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></div></pre>
+            </MDECode>
+            <MDECode lang="javascript">
+                <pre><div class="hljs"><code ><span class="hljs-comment">// Using require</span>
+<span class="hljs-keyword">const</span> hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>);
+
+<span class="hljs-comment">// Using ES6 import syntax</span>
+<span class="hljs-keyword">import</span> hljs <span class="hljs-keyword">from</span> <span class="hljs-string">'highlight.js'</span>;</code></div></pre>
+            </MDECode>
             <BButton variant="primary">Primary</BButton>
             <BButton variant="secondary">Secondary</BButton>
             <BButton variant="success">Success</BButton>
@@ -226,4 +252,9 @@ function inactive() {
     activeNavMenu.value = false
     activeNavToc.value = false
 }
+const html = `<span class="hljs-comment">// Using require</span>
+<span class="hljs-keyword">const</span> hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>);
+
+<span class="hljs-comment">// Using ES6 import syntax</span>
+<span class="hljs-keyword">import</span> hljs <span class="hljs-keyword">from</span> <span class="hljs-string">'highlight.js'</span>;`
 </script>

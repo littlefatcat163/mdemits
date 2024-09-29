@@ -9,7 +9,8 @@
             {
                 "imports": {
                     "vue": "/node_modules/vue/dist/vue.esm-browser.js",
-                    "ui": "/node_modules/mdemits/dist/layout/ui/index.js"
+                    "ui": "/node_modules/mdemits/dist/layout/ui/index.js",
+                    "clipboard": "/node_modules/mdemits/node_modules/clipboard/dist/clipboard.min.js"
                 }
             }
         </script>
@@ -21,6 +22,7 @@
         <link rel="stylesheet" disabled id="highlight-css-dark" href="/node_modules/mdemits/dist/layout/styles/github-dark.css">
     </head>
     <body>
+        <!-- svg-defs -->
         <div id="app"><!-- SSR --></div>
         <script type="module" src="./index.ts"></script>
         <!-- scripts -->

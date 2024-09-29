@@ -1,7 +1,19 @@
+<template>
+    <div class="mde-code position-relative" :class="{'is-copied': isCopied}">
+        <button ref="$btn" type="button" class="btn-clipboard position-absolute align-items-center" title="Copy to clipboard!"><small :class="['me-2', {'d-none': !isCopied}]">Copied</small><MDESvg :id="svgId" size="1.25em" /></button>
+        <small v-if="lang" class="lang position-absolute fw-medium text-body-tertiary">{{ lang }}</small>
+        <slot ref="$code"></slot>
+    </div>
+</template>
+
 <script setup lang="ts">
 import { getCurrentInstance, onMounted, shallowRef, computed } from 'vue'
 import ClipboardJS from 'clipboard'
 import MDESvg from './MDESvg.vue'
+
+defineProps<{
+    lang?: string
+}>()
 
 const isCopied = shallowRef(false)
 const svgId = computed(() => {
@@ -13,10 +25,10 @@ const svgId = computed(() => {
 
 onMounted(() => {
     const instance = getCurrentInstance()
-    const { $btn, $code } = instance!.refs
-    const clipboard = new ClipboardJS($btn as HTMLElement, {
+    const $el = instance!.vnode.el as HTMLElement
+    const clipboard = new ClipboardJS($el.firstElementChild!, {
         target() {
-            return $code as HTMLElement
+            return $el.lastElementChild!
         }
     })
     clipboard.on('success', (e) => {
@@ -29,19 +41,11 @@ onMounted(() => {
 })
 </script>
 
-<template>
-    <div class="mde-code position-relative" :class="{'is-copied': isCopied}">
-        <button ref="$btn" type="button" class="btn-clipboard position-absolute align-items-center" title="Copy to clipboard!"><small :class="['me-2', {'d-none': !isCopied}]">Copied</small><MDESvg :id="svgId" size="1.25em" /></button>
-        <small class="lang position-absolute fw-medium text-body-tertiary">javascript</small>
-        <pre><span class="hljs d-block p-4"><code ref="$code"><span class="hljs-keyword">const</span> highlightedCode = hljs.<span class="hljs-title function_">highlight</span>(
-  <span class="hljs-string">'&lt;span&gt;Hello World!&lt;/span&gt;'</span>,
-  { <span class="hljs-attr">language</span>: <span class="hljs-string">'xml'</span> }
-).<span class="hljs-property">value</span></code></span></pre>
-    </div>
-</template>
-
 <style lang="stylus">
 .mde-code
+    > pre
+        > div
+            padding 1.5rem
     .btn-clipboard
         display none
         top .75em

@@ -145,7 +145,6 @@ import MDENavMenu from './components/MDENavMenu.vue'
 import MDENavToc from './components/MDENavToc.vue'
 import MDECode from './components/MDECode.vue'
 import MDEImageGroup from './components/MDEImageGroup.vue'
-import MDEImageGroupItem from './components/MDEImageGroupItem.vue'
 import type { TreeItem } from '../types'
 import img350 from './imgs/350.jpg'
 

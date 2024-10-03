@@ -12,14 +12,3 @@ describe('image', () => {
         console.log(res)
     })
 })
-
-/* describe('frontmatter', () => {
-    const frontmatterTxt = fs.readFileSync(path.resolve(__dirname, 'md/formatter.md'), 'utf-8')
-    test('md', async () => {
-        const mdItRes = md.render(frontmatterTxt)
-        const mdRes = await marked(frontmatterTxt, {async: true})
-        // console.log(mdItRes)
-        // console.log('..')
-        // console.log(mdRes) 
-    })
-}) */

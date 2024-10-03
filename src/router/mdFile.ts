@@ -12,7 +12,7 @@ import { build } from '../build'
 import { mdEmitsConfig } from '../config'
 // @ts-ignore
 import * as UI from 'ui'
-import type { TreeItem } from '../types'
+import type { TreeItem, MarkdownEnv } from '../types'
 
 const navList: TreeItem[] = [
     {
@@ -183,7 +183,10 @@ export async function tsrUrlMdPage(ctx: RouterContext) {
         return
     }
     const mdContent = await readFile(filePath, 'utf8')
-    const mdHtml = mdRender.render(mdContent)
+    const markdownEnv: MarkdownEnv = {
+        sourcePath: filePath
+    }
+    const mdHtml = mdRender.render(mdContent, markdownEnv)
     const { INDEX_HTML, LAYOUT_VUE_TEMPLATE } = await htmlTemplate()
     const ssrHtml = await ssr(mdHtml, LAYOUT_VUE_TEMPLATE)
     const html = INDEX_HTML.replace('<!-- SSR -->', ssrHtml).replace(

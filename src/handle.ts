@@ -11,6 +11,10 @@ export function joinMdemitsDistPath(...paths: string[]): string {
     return joinCwdPath('node_modules', 'mdemits', 'dist', ...paths)
 }
 
+export function joinSuPath(...paths: string[]) {
+    return path.join(...paths.map((item) => item.replace(/^\.\//, '../')))
+}
+
 let INDEX_HTML: string
 let INDEX_TS: string
 let LAYOUT_VUE_TEMPLATE: string

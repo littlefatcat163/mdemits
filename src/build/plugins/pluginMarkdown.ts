@@ -3,6 +3,7 @@ import esbuild from 'esbuild'
 import { readFile } from 'fs/promises'
 import { createMarkdownRender } from '../../markdown'
 import { joinMdemitsDistPath } from '../../handle'
+import type { MarkdownEnv } from '../../types'
 
 const mdRender = createMarkdownRender()
 
@@ -12,7 +13,10 @@ export default function pluginMarkdown(): esbuild.Plugin {
         setup(build) {
             build.onLoad({ filter: /\.md$/ }, async (args) => {
                 const markdownContent = await readFile(args.path, 'utf8')
-                const htmlContent = mdRender.render(markdownContent)
+                const markdownEnv: MarkdownEnv = {
+                    sourcePath: args.path,
+                }
+                const htmlContent = mdRender.render(markdownContent, markdownEnv)
                 const mdAppVuePath = joinMdemitsDistPath('layout/tmp_app.vue')
                 const MD_APP_VUE = await readFile(mdAppVuePath, 'utf8')
                 const mdVue = MD_APP_VUE.replace(

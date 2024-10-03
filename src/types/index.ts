@@ -18,3 +18,9 @@ export type ImageGroupItem = {
 export type MarkdownContainer = {
     render: RenderRule
 }
+
+export type MarkdownEnv = {
+    frontmatter?: Record<string, unknown>
+    // headers?: Header[]
+    sourcePath: string
+}

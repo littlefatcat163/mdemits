@@ -91,7 +91,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BButton, BAlert, BBadge, MDEHeader, MDENavMenu, MDENavToc, MDECode } from 'ui'
+import { BButton, BAlert, BBadge, MDEHeader, MDENavMenu, MDENavToc, MDECode, MDEImageGroup, MDEImageGroupItem } from 'ui'
 import type { TreeItem } from '../types'
 const navList: TreeItem[] = [
     {

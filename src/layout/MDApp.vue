@@ -21,6 +21,25 @@
     <MDENavMenu :active="activeNavMenu" :data="navList" />
     <main class="mde-main">
         <div>
+            <h1>h1 一级</h1>
+            <p>asdfkjaskdfj</p>
+            <hr>
+            <h2>h2 二级</h2>
+            <h3>h3 三级</h3>
+            <h4>h4 四级</h4>
+            <h5>h5 五级</h5>
+            <h6>h6 六级</h6>
+            <h2>image</h2>
+            <MDEImageGroup :list="[{src: img350, alt: '350', width: 350, height: 700}]">
+            </MDEImageGroup>
+            <hr>
+            <h2>image</h2>
+            <MDEImageGroup :list="[
+                {src: img350, alt: '350_1', width: 350, height: 700},
+                {src: img350, alt: '350_2', width: 350, height: 700},
+                {src: img350, alt: '350_3', width: 350, height: 700}
+            ]">
+            </MDEImageGroup>
             <p>code</p>
             <hr>
             <MDECode lang="js"><pre><div class="hljs"><span class="hljs-keyword">var</span> getUserInfo = <span class="hljs-keyword">function</span>(<span class="hljs-params">userId, callback</span>) {
@@ -125,7 +144,11 @@ import MDEHeader from './components/MDEHeader.vue'
 import MDENavMenu from './components/MDENavMenu.vue'
 import MDENavToc from './components/MDENavToc.vue'
 import MDECode from './components/MDECode.vue'
+import MDEImageGroup from './components/MDEImageGroup.vue'
+import MDEImageGroupItem from './components/MDEImageGroupItem.vue'
 import type { TreeItem } from '../types'
+import img350 from './imgs/350.jpg'
+
 const navList: TreeItem[] = [
     {
         text: '介绍',
@@ -252,9 +275,4 @@ function inactive() {
     activeNavMenu.value = false
     activeNavToc.value = false
 }
-const html = `<span class="hljs-comment">// Using require</span>
-<span class="hljs-keyword">const</span> hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>);
-
-<span class="hljs-comment">// Using ES6 import syntax</span>
-<span class="hljs-keyword">import</span> hljs <span class="hljs-keyword">from</span> <span class="hljs-string">'highlight.js'</span>;`
 </script>

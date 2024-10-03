@@ -65,4 +65,8 @@ onMounted(() => {
             display flex
         .lang
             display none
+    
+    &.is-copied
+        button
+            color var(--bs-success-text-emphasis)
 </style>

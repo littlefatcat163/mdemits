@@ -8,7 +8,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build:ui": "vite build",
-    "scss": "sass --no-source-map --watch src/layout/stylus/bootstrap.scss src/layout/styles/bootstrap.css",
+    "scss": "sass --no-source-map --watch src/layout/stylus:src/layout/styles ",
     "stylus": "stylus src/layout/stylus --out src/layout/styles -w",
     "dev": "vite",
     "css": "postcss ./src/layout/input.css -o ./src/layout/index.css --watch --verbose",
@@ -38,6 +38,7 @@
     "@types/koa__router": "^12.0.4",
     "@types/lodash-es": "^4.17.12",
     "@types/markdown-it": "^14.1.1",
+    "@types/markdown-it-container": "^2.0.10",
     "@types/minimist": "^1.2.5",
     "@types/node": "^20.14.11",
     "@types/nprogress": "^0.2.3",
@@ -77,8 +78,10 @@
     "html-minifier": "^4.0.0",
     "koa": "^2.15.3",
     "markdown-it": "^14.1.0",
+    "markdown-it-container": "^4.0.0",
     "minimist": "^1.2.8",
     "nprogress": "^0.2.0",
+    "photoswipe": "^5.4.4",
     "vite": "^5.4.3",
     "vue": "^3.5.3"
   }

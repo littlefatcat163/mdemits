@@ -7,6 +7,7 @@ import {
 import { highlightPlugin } from './plugins/highlightPlugin'
 import { imagePlugin } from './plugins/imagePlugin'
 import { paragraphPlugin } from './plugins/paragraphPlugin'
+import { htmlPlugin } from './plugins/htmlPlugin'
 import { imageContainer } from './plugins/imageContainer'
 import { slugify } from '@mdit-vue/shared'
 
@@ -24,6 +25,7 @@ export const createMarkdownRender = () => {
     md.use(imagePlugin)
     md.use(imageContainer)
     md.use(paragraphPlugin)
+    md.use(htmlPlugin)
 
     return md
 }

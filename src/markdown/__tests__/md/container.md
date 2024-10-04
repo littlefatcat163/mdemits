@@ -1,7 +1,7 @@
 # container
 
 <!-- #region tabs -->
-::: tabs
+:::: tabs
 
 <!-- #region tabpane -->
 ::: tabpane 1
@@ -21,5 +21,5 @@
 :::
 <!-- #endregion tabpane -->
 
-:::
+::::
 <!-- #endregion tabs -->

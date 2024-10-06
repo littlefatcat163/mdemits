@@ -46,6 +46,7 @@ onMounted(() => {
     > pre
         > div
             padding 1.5rem
+            overflow auto
     .btn-clipboard
         display none
         top .75em

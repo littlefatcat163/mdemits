@@ -2,7 +2,7 @@
     <nav
         :class="[
             'mde-nav',
-            'mde-nav-menu border-right border-body-secondary bg-body',
+            'mde-nav-menu bg-body',
             { active },
         ]"
         @click="handleClick"

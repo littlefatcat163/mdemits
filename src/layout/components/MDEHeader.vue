@@ -1,5 +1,5 @@
 <template>
-    <header class="mde-header border-bottom border-body-secondary text-light d-flex align-items-center px-4">
+    <header class="mde-header text-light d-flex align-items-center px-4">
         <div class="fw-bold fs-2 flex-fill" role="button">MDEMITS</div>
         <div class="d-grid column-gap-3" style="grid-template-columns: auto auto auto">
             <MDESvg id="qr-code" size="1.5em" class="point-hover" />

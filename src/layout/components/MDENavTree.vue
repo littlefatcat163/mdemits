@@ -14,9 +14,9 @@
                     :href="href"
                     >{{ text }}</a
                 >
-                <span v-else role="button" class="fw-medium" :data-id="id">{{
-                    text
-                }}</span>
+                <span v-else role="button" class="fw-medium" :data-id="id">
+                    {{ text }}
+                </span>
                 <MDENavTree
                     v-if="items"
                     :data="items"
@@ -38,6 +38,7 @@ defineProps<{
 
 <style lang="stylus">
 .mde-nav-tree
+    margin-bottom 0
     li [role=button]
         color var(--bs-body-color)
         opacity 0.65

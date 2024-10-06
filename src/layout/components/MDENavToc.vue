@@ -1,5 +1,5 @@
 <template>
-    <nav :class="['mde-nav', 'mde-nav-toc border-left border-body-secondary bg-body', { active }]" @click="handleClick">
+    <nav :class="['mde-nav', 'mde-nav-toc bg-body', { active }]" @click="handleClick">
         <!-- <div class='mde-nav-flag'></div> -->
         <MDENavTree :data="treeData" :collapseds="collapseds" />
     </nav>

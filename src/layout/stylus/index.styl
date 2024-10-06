@@ -1,25 +1,35 @@
 :root
     --mde-header-height 4rem
+    --mde-banner-height 38rem
     --mde-nav-bar-height 2.5rem
-    --mde-nav-width 19rem
+    --mde-nav-width 18rem
     --mde-main-pdx 0rem
     --mde-main-bg #f9f9f9
 
 .mde-header
     background linear-gradient(45deg, #3e4075 0%, #222639 72%, #1b1f27 100%)
     height var(--mde-header-height)
-    position fixed
+    position sticky
     top 0
     left 0
     right 0
     z-index 10
-.mde-nav-bar
-    height var(--mde-nav-bar-height)
-    position fixed
+.mde-banner
+    background no-repeat center center
+    background-size cover
+    height var(--mde-banner-height)
+    > div
+        background-color rgba(0,0,0,0.1)
+
+.mde-nav-wrapper
+    position sticky
     top var(--mde-header-height)
     left 0
     right 0
     z-index 10
+    min-height 1px
+.mde-nav-bar
+    height var(--mde-nav-bar-height)
 
 .point-hover
     cursor pointer
@@ -61,29 +71,23 @@
         display block
 
 .mde-nav
-    padding 0 1.5rem
-    position fixed
+    padding 1rem 1.5rem
+    position absolute
     overflow-y auto
     font-size 0.875rem
     width var(--mde-nav-width)
     transition transform ease-in-out 180ms, top ease-in-out 180ms
     max-height calc(100vh)
+    top 0
     &.active
         transform translateX(0)
-    /* .mde-nav-flag
-        position absolute
-        width 0.125rem
-        height 1rem
-        background-color var(--bs-primary-text-emphasis) */
 
 .mde-nav-menu
-    top 0
     left 0
     transform translateX(-100%)
     z-index 11
 
 .mde-nav-toc
-    top calc(var(--mde-header-height) + var(--mde-nav-bar-height))
     right 0
     transform translateX(100%)
     z-index 13
@@ -91,30 +95,35 @@
 .mde-main
     padding-left var(--mde-main-pdx)
     padding-right var(--mde-main-pdx)
-    padding-top var(--mde-header-height)
     > div
-        padding 4rem
+        padding 1rem 3rem 3rem
         background-color var(--mde-main-bg)
+        // margin-top var(--main-dev-mt)
+        // border-radius 0.8rem
         // box-shadow 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
 
-@media (min-width: 1200px)
+@media (min-width: 1400px)
     .mde-backdrop.active
         display none
     .mde-nav-toc
         transform translateX(0)
-        top var(--mde-header-height)
         max-height calc(100vh - var(--mde-header-height))
     .mde-main
         padding-right calc(var(--mde-nav-width) + var(--mde-main-pdx))
 
-@media (min-width: 992px) and (max-width: 1200px)
+@media (max-width: 1400px)
+    .mde-nav-toc
+        top var(--mde-nav-bar-height)
+    .mde-main
+        --main-dev-mt 0
+
+@media (min-width: 992px) and (max-width: 1400px)
     .mde-backdrop
         z-index 12
 
 @media (min-width: 992px)
     .mde-nav-menu
         transform translateX(0)
-        top var(--mde-header-height)
         max-height calc(100vh - var(--mde-header-height))
     .mde-main
         padding-left calc(var(--mde-nav-width) + var(--mde-main-pdx))

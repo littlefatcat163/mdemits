@@ -9,7 +9,7 @@ import { normalizePath } from 'vite'
 import { createMarkdownRender } from '../markdown'
 import { htmlTemplate } from '../handle'
 import { build } from '../build'
-import { mdEmitsConfig } from '../config'
+import { sizeConfig } from '../config'
 // @ts-ignore
 import * as UI from 'ui'
 import type { TreeItem, MarkdownEnv } from '../types'
@@ -139,15 +139,15 @@ const mdRender = createMarkdownRender()
 
 function urlToMdFilePath(url: string) {
     if (/\.md$/.test(url)) {
-        return normalizePath(path.join(mdEmitsConfig.root, url))
+        return normalizePath(path.join(sizeConfig.root!, url))
     } else {
-        return normalizePath(path.join(mdEmitsConfig.root, url + '.md'))
+        return normalizePath(path.join(sizeConfig.root!, url + '.md'))
     }
 
     /* if (/[\/]$/.test(url)) {
-        return normalizePath(path.join(mdEmitsConfig.root, url, 'index.md'))
+        return normalizePath(path.join(sizeConfig.root, url, 'index.md'))
     } else {
-        return normalizePath(path.join(mdEmitsConfig.root, url + '.md'))
+        return normalizePath(path.join(sizeConfig.root, url + '.md'))
     } */
 }
 

@@ -46,3 +46,7 @@ export async function htmlTemplate() {
         LAYOUT_VUE_TEMPLATE,
     }
 }
+
+export function formatDate() {
+    // return dayjs().locale('zh-cn').format('LLLL')
+}

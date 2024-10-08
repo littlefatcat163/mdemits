@@ -1,6 +1,6 @@
 import minimist from 'minimist'
 import chalk from 'chalk'
-import { resolveConfig, createServer } from '.'
+import { resolveConfig, createServer, sizeConfig } from '.'
 import { version, name } from '../package.json'
 
 const argv: any = minimist(process.argv.slice(2))
@@ -33,7 +33,9 @@ if (!command || command === 'dev') {
     const startTime = Date.now()
 
     const createDevServer = async () => {
+        console.log('resolve config before', sizeConfig)
         await resolveConfig(root, 'serve', 'development')
+        console.log('resolve config after', sizeConfig)
         const port = 5194
         const server = await createServer({ port })
         // console.clear()

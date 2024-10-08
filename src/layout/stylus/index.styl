@@ -98,8 +98,17 @@
     > div
         padding 1rem 3rem 3rem
         background-color var(--mde-main-bg)
-        // margin-top var(--main-dev-mt)
-        // border-radius 0.8rem
+        position relative
+        &::before
+            content ""
+            display block
+            position absolute
+            top -2.4rem
+            left 0
+            right 0
+            height 2.4rem
+            background-color var(--mde-main-bg)
+            border-radius 0.8rem 0.8rem 0 0
         // box-shadow 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
 
 @media (min-width: 1400px)
@@ -115,7 +124,9 @@
     .mde-nav-toc
         top var(--mde-nav-bar-height)
     .mde-main
-        --main-dev-mt 0
+        > div
+            &::before
+                opacity 0
 
 @media (min-width: 992px) and (max-width: 1400px)
     .mde-backdrop

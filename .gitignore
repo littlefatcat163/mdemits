@@ -7,8 +7,8 @@
 .idea
 .temp
 .vite_opt_cache
-.vscode
 dist
+*-lock.yaml
 cache
 temp
 examples-temp

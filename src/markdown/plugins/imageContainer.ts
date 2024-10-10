@@ -6,7 +6,6 @@ export const imageContainer = (md: MarkdownIt) => {
     md.use(container, 'tabs', {
         render(tokens, idx) {
             const token = tokens[idx]
-            console.log('tab container', token.info)
             if (token.nesting === 1) {
                 return `<div class="tabs">\n`
             }

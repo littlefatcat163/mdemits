@@ -6,5 +6,15 @@ import MDECode from './MDECode.vue'
 import MDESvg from './MDESvg.vue'
 import MDEImageGroup from './MDEImageGroup.vue'
 import MDEImageGroupItem from './MDEImageGroupItem.vue'
+import MDEBanner from './MDEBanner.vue'
 
-export { MDEHeader, MDENavMenu, MDENavToc, MDECode, MDESvg, MDEImageGroup, MDEImageGroupItem }
+export {
+    MDEHeader,
+    MDENavMenu,
+    MDENavToc,
+    MDECode,
+    MDESvg,
+    MDEImageGroup,
+    MDEImageGroupItem,
+    MDEBanner,
+}

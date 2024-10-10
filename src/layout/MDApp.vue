@@ -1,6 +1,6 @@
 <template>
     <MDEHeader />
-    <MDEBanner />
+    <MDEBanner :title="title" :date-time="dateTime" :birth-time="birthTime" :word="word" :read-time="readTime" :banner-img="bannerImg" />
     <div class="mde-nav-wrapper">
         <nav class="mde-nav-bar bg-body fs-6 border-bottom border-body-secondary d-flex align-items-center justify-content-between d-xxl-none px-4">
             <div class="point-hover" @click="activeNavMenu = true">
@@ -26,7 +26,7 @@
     <main class="mde-main">
         <div>
             <p class="alert alert-primary" role="alert">
-                Last updated on Saturday, March 16, 2024 11:27 AM
+                {{ mTime }}
             </p>
             <h1>h1 一级</h1>
             <hr>
@@ -281,4 +281,11 @@ function inactive() {
     activeNavMenu.value = false
     activeNavToc.value = false
 }
+const title = 'I\'m title !!!! The h1!'
+const dateTime = '2024-10-08 15:50'
+const birthTime = 'Tuesday, October 8, 2024 3:51 PM'
+const word = '300 words'
+const readTime = '6 mins'
+const bannerImg = '/imgs/default.jpg'
+const mTime = 'Tuesday, October 8, 2024 4:18 PM'
 </script>

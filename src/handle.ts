@@ -1,6 +1,8 @@
 import { normalizePath } from 'vite'
 import path from 'path'
-import { readFile } from 'fs/promises'
+import { readFile, stat } from 'fs/promises'
+import moment from 'moment-timezone'
+import { sizeConfig } from './config'
 import { scanSvg, svgsHTML } from './vitePlugin/vite-plugin-svg'
 
 export function joinCwdPath(...paths: string[]): string {
@@ -47,6 +49,23 @@ export async function htmlTemplate() {
     }
 }
 
-export function formatDate() {
-    // return dayjs().locale('zh-cn').format('LLLL')
+export async function fileDate(filePath: string) {
+    let dateTime = '-'
+    let birthTime = '-'
+    let mTime = '-'
+    try {
+        const { birthtimeMs, mtimeMs } = await stat(filePath)
+        dateTime = moment(birthtimeMs).format()
+        birthTime = moment(birthtimeMs)
+            .locale(sizeConfig.language!)
+            .format(sizeConfig.dateFormat)
+        mTime = moment(mtimeMs)
+            .locale(sizeConfig.language!)
+            .format(sizeConfig.dateFormat)
+    } catch (error) {}
+    return {
+        dateTime,
+        birthTime,
+        mTime,
+    }
 }

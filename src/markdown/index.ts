@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it'
+import { inspect } from 'util'
 import { frontmatterPlugin } from '@mdit-vue/plugin-frontmatter'
 import {
     headersPlugin,
@@ -28,4 +29,20 @@ export const createMarkdownRender = () => {
     md.use(htmlPlugin)
 
     return md
+}
+
+export const mdImgPath = (mdImg: string) => {
+    const match = /!\[\]\((.*?)\s*(".*?")?\)/.exec(mdImg)
+    if (Array.isArray(match) && match.length > 1) {
+        return match[1]
+    }
+    return '/img/xx.png'
+}
+
+export const defineConst = (obj: Record<string, unknown>) => {
+    const consts = []
+    for (let k in obj) {
+        consts.push(`const ${k} = ${inspect(obj[k], false, 5)}`)
+    }
+    return consts.join('\n')
 }

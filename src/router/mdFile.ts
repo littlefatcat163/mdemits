@@ -6,31 +6,31 @@ import { createSSRApp } from 'vue'
 import { parse } from 'vue/compiler-sfc'
 import { renderToString } from 'vue/server-renderer'
 import { normalizePath } from 'vite'
-import { createMarkdownRender } from '../markdown'
-import { htmlTemplate } from '../handle'
+import { createMarkdownRender, mdImgPath } from '../markdown'
+import { htmlTemplate, fileDate } from '../handle'
 import { build } from '../build'
 import { sizeConfig } from '../config'
 // @ts-ignore
 import * as UI from 'ui'
-import type { TreeItem, MarkdownEnv } from '../types'
+import type { TreeItem, MarkdownEnv, MarkdownAppVueEnv } from '../types'
 
 const navList: TreeItem[] = [
     {
         text: '介绍',
-        href: '/info'
+        href: '/info',
     },
     {
         text: '安装',
         items: [
             {
                 text: '环境',
-                href: '/env'
+                href: '/env',
             },
             {
                 text: '软件',
-                href: '/soft'
-            }
-        ]
+                href: '/soft',
+            },
+        ],
     },
     {
         text: '极端案例场景',
@@ -40,68 +40,68 @@ const navList: TreeItem[] = [
                 items: [
                     {
                         text: 'English and how to use this content',
-                        href: '/asd'
+                        href: '/asd',
                     },
                     {
                         text: 'very long, very long, very long, very very very very very very very long long long long',
-                        href: '/#/'
+                        href: '/#/',
                     },
                     {
                         text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
-                        href: '/#/'
-                    }
-                ]
+                        href: '/#/',
+                    },
+                ],
             },
             {
                 text: 'English and how to use this content',
-                href: '/#/'
+                href: '/#/',
             },
             {
                 text: 'very long, very long, very long, very very very very very very very long long long long',
-                href: '/#/'
+                href: '/#/',
             },
             {
                 text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
-                href: '/#/'
-            }
-        ]
+                href: '/#/',
+            },
+        ],
     },
     {
-        text: '命令'
+        text: '命令',
     },
     {
         text: '组件',
         items: [
             {
                 text: '文字',
-                href: '/#'
+                href: '/#',
             },
             {
                 text: '按钮',
-                href: '/#'
+                href: '/#',
             },
             {
                 text: '图片',
-                href: '/#'
+                href: '/#',
             },
             {
                 text: '卡片',
-                href: '/#'
+                href: '/#',
             },
             {
                 text: '手风琴',
-                href: '/#'
+                href: '/#',
             },
             {
                 text: '折叠',
-                href: '/#'
+                href: '/#',
             },
             {
                 text: '提示框',
-                href: '/#'
-            }
-        ]
-    }
+                href: '/#',
+            },
+        ],
+    },
 ]
 const tocList: TreeItem[] = [
     {
@@ -151,25 +151,28 @@ function urlToMdFilePath(url: string) {
     } */
 }
 
-function ssr(mdHtml: string, LAYOUT_VUE_TEMPLATE: string) {
+function ssr(
+    mdHtml: string,
+    LAYOUT_VUE_TEMPLATE: string,
+    mdEnv: MarkdownAppVueEnv
+) {
     const template = LAYOUT_VUE_TEMPLATE.replace('<!-- Markdown -->', mdHtml)
     const { descriptor } = parse(template)
     const app = createSSRApp({
         template: descriptor.template?.content,
         components: {
-            ...UI
+            ...UI,
         },
         data() {
             return {
                 activeNavMenu: false,
                 activeNavToc: false,
-                navList,
-                tocList
+                ...mdEnv,
             }
         },
         methods: {
-            inactive() {}
-        }
+            inactive() {},
+        },
     })
     return renderToString(app)
 }
@@ -182,17 +185,34 @@ export async function tsrUrlMdPage(ctx: RouterContext) {
         ctx.body = 'Not Found'
         return
     }
+    const { birthTime, dateTime, mTime } = await fileDate(filePath)
     const mdContent = await readFile(filePath, 'utf8')
     const markdownEnv: MarkdownEnv = {
-        sourcePath: filePath
+        sourcePath: filePath,
+        frontmatter: {
+            title: '',
+            excerpt: '',
+            bannerImg: '',
+        },
     }
     const mdHtml = mdRender.render(mdContent, markdownEnv)
     const { INDEX_HTML, LAYOUT_VUE_TEMPLATE } = await htmlTemplate()
-    const ssrHtml = await ssr(mdHtml, LAYOUT_VUE_TEMPLATE)
-    const html = INDEX_HTML.replace('<!-- SSR -->', ssrHtml).replace(
-        `./index.ts`,
-        path.join(ctx.path, 'index.ts')
-    )
+    const frontmatter = markdownEnv.frontmatter
+    const ssrHtml = await ssr(mdHtml, LAYOUT_VUE_TEMPLATE, {
+        navList,
+        tocList,
+        birthTime,
+        dateTime,
+        mTime,
+        title: frontmatter.title,
+        word: '300 words',
+        readTime: '6 mins',
+        bannerImg: mdImgPath(frontmatter.bannerImg),
+    })
+    const html = INDEX_HTML.replace('<!-- title -->', frontmatter.title)
+        .replaceAll('<!-- excerpt -->', frontmatter.excerpt)
+        .replace('<!-- SSR -->', ssrHtml)
+        .replace(`./index.ts`, path.join(ctx.path, 'index.ts'))
     ctx.response.type = 'text/html; charset=utf-8'
     ctx.body = html
 }

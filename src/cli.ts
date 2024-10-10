@@ -33,9 +33,7 @@ if (!command || command === 'dev') {
     const startTime = Date.now()
 
     const createDevServer = async () => {
-        console.log('resolve config before', sizeConfig)
         await resolveConfig(root, 'serve', 'development')
-        console.log('resolve config after', sizeConfig)
         const port = 5194
         const server = await createServer({ port })
         // console.clear()

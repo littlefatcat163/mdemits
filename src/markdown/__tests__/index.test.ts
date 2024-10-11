@@ -2,7 +2,7 @@ import { describe, test } from 'vitest'
 import path from 'path'
 import fs from 'fs'
 import moment from 'moment-timezone';
-import { createMarkdownRender, defineConst } from '../index'
+import { createMarkdownRender, defineConst, mdImgPath } from '../index'
 
 const md = createMarkdownRender()
 
@@ -19,10 +19,7 @@ describe('container', () => {
             banner: ''
         }}
         const res = md.render(containerTxt, env)
-        // console.log(env.frontmatter.banner)
-        /* const a = {abc: 'xxx', lll: {x1: '111', x2: '222'}}
-        console.log(inspect({...a})) */
-        console.log(defineConst(env))
+        console.log(mdImgPath(''))
     })
 })
 

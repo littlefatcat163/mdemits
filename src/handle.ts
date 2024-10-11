@@ -13,6 +13,10 @@ export function joinMdemitsDistPath(...paths: string[]): string {
     return joinCwdPath('node_modules', 'mdemits', 'dist', ...paths)
 }
 
+export function nodeModuleMdemitsDist(...paths: string[]) {
+    return path.join('/', 'node_modules', 'mdemits', 'dist', ...paths)
+}
+
 export function joinSuPath(...paths: string[]) {
     return path.join(...paths.map((item) => item.replace(/^\.\//, '../')))
 }

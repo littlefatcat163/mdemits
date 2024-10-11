@@ -11,6 +11,7 @@ import { paragraphPlugin } from './plugins/paragraphPlugin'
 import { htmlPlugin } from './plugins/htmlPlugin'
 import { imageContainer } from './plugins/imageContainer'
 import { slugify } from '@mdit-vue/shared'
+import { nodeModuleMdemitsDist } from '../handle' 
 
 export const createMarkdownRender = () => {
     const md: MarkdownIt = new MarkdownIt({
@@ -36,7 +37,7 @@ export const mdImgPath = (mdImg: string) => {
     if (Array.isArray(match) && match.length > 1) {
         return match[1]
     }
-    return '/img/xx.png'
+    return nodeModuleMdemitsDist('layout/imgs/default.jpg')
 }
 
 export const defineConst = (obj: Record<string, unknown>) => {

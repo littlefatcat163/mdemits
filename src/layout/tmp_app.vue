@@ -1,6 +1,6 @@
 <template>
     <MDEHeader />
-    <MDEBanner :title="title" :date-time="dateTime" :birth-time="birthTime" :word="word" :read-time="readTime" :banner-img="bannerImg" />
+    <MDEBanner :title="title" :date-time="dateTime" :birth-time="birthTime" :banner-img="bannerImg" :words="words" :minutes="minutes" />
     <div class="mde-nav-wrapper">
         <nav class="mde-nav-bar bg-body fs-6 border-bottom border-body-secondary d-flex align-items-center justify-content-between d-xxl-none px-4">
             <div class="point-hover" @click="activeNavMenu = true">

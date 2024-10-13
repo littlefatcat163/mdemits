@@ -8,6 +8,7 @@ import { renderToString } from 'vue/server-renderer'
 import { normalizePath } from 'vite'
 import { createMarkdownRender, mdImgPath } from '../markdown'
 import { htmlTemplate, fileDate } from '../handle'
+import { wordCountAndTime } from '../utils/word'
 import { build } from '../build'
 import { sizeConfig } from '../config'
 // @ts-ignore
@@ -198,15 +199,16 @@ export async function tsrUrlMdPage(ctx: RouterContext) {
     const mdHtml = mdRender.render(mdContent, markdownEnv)
     const { INDEX_HTML, LAYOUT_VUE_TEMPLATE } = await htmlTemplate()
     const frontmatter = markdownEnv.frontmatter
+    const { words, minutes } = wordCountAndTime(mdHtml)
     const ssrHtml = await ssr(mdHtml, LAYOUT_VUE_TEMPLATE, {
         navList,
         tocList,
         birthTime,
         dateTime,
         mTime,
+        words,
+        minutes,
         title: frontmatter.title,
-        word: '300 words',
-        readTime: '6 mins',
         bannerImg: mdImgPath(frontmatter.bannerImg),
     })
     const html = INDEX_HTML.replace('<!-- title -->', frontmatter.title)

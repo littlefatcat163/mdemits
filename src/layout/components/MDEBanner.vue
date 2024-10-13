@@ -8,9 +8,9 @@
             </p>
             <p class="d-flex align-items-center mb-0">
                 <MDESvg size="1rem" id="file-earmark-word-fill" class="me-1" />
-                <span>{{ word }}</span>
+                <span>{{ words }} words</span>
                 <MDESvg size="1rem" id="stopwatch-fill" class="ms-4 me-1" />
-                <span>{{ readTime }}</span>
+                <span>{{ minutes }} mins</span>
             </p>
         </div>
     </div>
@@ -22,8 +22,8 @@ defineProps<{
     title: string
     dateTime: string
     birthTime: string
-    word: string
-    readTime: string
     bannerImg: string
+    words: string
+    minutes: number
 }>()
 </script>

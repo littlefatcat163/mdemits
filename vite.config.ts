@@ -9,6 +9,7 @@ export default defineConfig({
   build: {
     cssCodeSplit: false,
     outDir: 'ui',
+    minify: true,
     lib: {
       entry: ['components/index.ts'],
       formats: ['es'],

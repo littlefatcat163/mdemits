@@ -18,9 +18,9 @@ defineProps<{
 const isCopied = shallowRef(false)
 const svgId = computed(() => {
     if (isCopied.value) {
-        return 'clipboard-check'
+        return 'check-lg'
     }
-    return 'clipboard'
+    return 'copy'
 })
 
 onMounted(() => {

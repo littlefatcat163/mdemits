@@ -1,8 +1,9 @@
 import { describe, test } from 'vitest'
 import path from 'path'
 import fs from 'fs'
-import moment from 'moment-timezone';
+import moment from 'moment-timezone'
 import { createMarkdownRender, defineConst, mdImgPath } from '../index'
+import { wordCountAndTime } from '../../utils/word'
 
 const md = createMarkdownRender()
 
@@ -19,7 +20,7 @@ describe('container', () => {
             banner: ''
         }}
         const res = md.render(containerTxt, env)
-        console.log(mdImgPath(''))
+        console.log(wordCountAndTime(res))
     })
 })
 

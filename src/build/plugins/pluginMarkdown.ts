@@ -3,6 +3,7 @@ import esbuild from 'esbuild'
 import { readFile } from 'fs/promises'
 import { createMarkdownRender, mdImgPath, defineConst } from '../../markdown'
 import { treeNodeRegisterId } from '../../utils/tree'
+import { wordCountAndTime } from '../../utils/word'
 import { joinMdemitsDistPath, fileDate } from '../../handle'
 import type { MarkdownEnv, MarkdownAppVueEnv, TreeItem } from '../../types'
 
@@ -148,6 +149,7 @@ export default function pluginMarkdown(): esbuild.Plugin {
                     markdownEnv
                 )
                 const mdAppVuePath = joinMdemitsDistPath('layout/tmp_app.vue')
+                const { words, minutes } = wordCountAndTime(htmlContent)
                 const { birthTime, dateTime, mTime } = await fileDate(args.path)
                 const mdVueEnv: MarkdownAppVueEnv = {
                     // navList: treeNodeRegisterId(navList),
@@ -157,9 +159,9 @@ export default function pluginMarkdown(): esbuild.Plugin {
                     birthTime,
                     dateTime,
                     mTime,
+                    words,
+                    minutes,
                     title: markdownEnv.frontmatter.title,
-                    word: '300 words',
-                    readTime: '6 mins',
                     bannerImg: mdImgPath(markdownEnv.frontmatter.bannerImg),
                 }
                 const MD_APP_VUE = await readFile(mdAppVuePath, 'utf8')

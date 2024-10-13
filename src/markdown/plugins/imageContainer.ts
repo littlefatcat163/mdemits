@@ -16,7 +16,7 @@ export const imageContainer = (md: MarkdownIt) => {
     md.use(container, 'tabpane', {
         render(tokens, idx) {
             const token = tokens[idx]
-            console.log('tabpane container', token.info)
+            // console.log('tabpane container', token.info)
             if (token.nesting === 1) {
                 return `<div class="tabpane">\n`
             }

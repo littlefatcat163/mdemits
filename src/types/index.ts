@@ -36,8 +36,8 @@ export type MarkdownAppVueEnv = {
     title: string
     dateTime: string
     birthTime: string
-    word: string
-    readTime: string
     bannerImg: string
+    words: string
+    minutes: number
     mTime: string
 }

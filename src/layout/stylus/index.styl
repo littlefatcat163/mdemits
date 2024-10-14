@@ -6,6 +6,9 @@
     --mde-main-pdx 0rem
     --mde-main-bg #f9f9f9
 
+h1,h2,h3,h4,h5,h6
+    scroll-margin-top calc(var(--mde-header-height) + 1rem)
+
 .mde-header
     background linear-gradient(45deg, #3e4075 0%, #222639 72%, #1b1f27 100%)
     height var(--mde-header-height)
@@ -121,6 +124,8 @@
         padding-right calc(var(--mde-nav-width) + var(--mde-main-pdx))
 
 @media (max-width: 1400px)
+    h1,h2,h3,h4,h5,h6
+        scroll-margin-top calc(var(--mde-header-height) + var(--mde-nav-bar-height) + 1rem)
     .mde-nav-toc
         top var(--mde-nav-bar-height)
     .mde-main

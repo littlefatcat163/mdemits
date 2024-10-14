@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "bin": "bin/mdemits.js",
-  "types": "dist/types/shared.d.ts",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "node scripts/build.js",
     "build:ui": "vite build",

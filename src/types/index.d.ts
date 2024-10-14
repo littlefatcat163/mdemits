@@ -41,3 +41,10 @@ export type MarkdownAppVueEnv = {
     minutes: number
     mTime: string
 }
+
+export type SizeConfig = {
+    root?: string
+    language?: string
+    dateFormat?: string
+    sidebar?: TreeItem[]
+}

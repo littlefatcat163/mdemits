@@ -1,25 +1,28 @@
 <template>
     <MDEHeader />
-    <MDEBanner :title="title" :date-time="dateTime" :birth-time="birthTime" :banner-img="bannerImg" :words="words" :minutes="minutes" />
+    <MDEBanner :title="title" :date-time="dateTime" :birth-time="birthTime" :banner-img="bannerImg" :words="words"
+        :minutes="minutes" />
     <div class="mde-nav-wrapper">
-        <nav class="mde-nav-bar bg-body fs-6 border-bottom border-body-secondary d-flex align-items-center justify-content-between d-xxl-none px-4">
+        <nav
+            class="mde-nav-bar bg-body fs-6 border-bottom border-body-secondary d-flex align-items-center justify-content-between d-xxl-none px-4">
             <div class="point-hover" @click="activeNavMenu = true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
-                    <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-filter-left" viewBox="0 0 16 16">
+                    <path
+                        d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                 </svg>
                 菜单
             </div>
             <div class="point-hover" @click="activeNavToc = true">
                 页面导航
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
-                    <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-filter-right" viewBox="0 0 16 16">
+                    <path
+                        d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5" />
                 </svg>
             </div>
         </nav>
-        <div
-            :class="['mde-backdrop', { active: activeNavMenu || activeNavToc }]"
-            @click="inactive"
-        ></div>
+        <div :class="['mde-backdrop', { active: activeNavMenu || activeNavToc }]" @click="inactive"></div>
         <MDENavMenu :active="activeNavMenu" :data="navList" />
         <MDENavToc :active="activeNavToc" :data="tocList" />
     </div>
@@ -29,26 +32,27 @@
                 {{ mTime }}
             </p>
             <h1>h1 一级</h1>
-            <hr>
+            <hr />
             <h2>h2 二级</h2>
             <h3>h3 三级</h3>
             <h4>h4 四级</h4>
             <h5>h5 五级</h5>
             <h6>h6 六级</h6>
             <h2>image</h2>
-            <MDEImageGroup :list="[{src: img350, alt: '350', width: 350, height: 700}]">
+            <MDEImageGroup :list="[{ src: img350, alt: '350', width: 350, height: 700 }]">
             </MDEImageGroup>
-            <hr>
+            <hr />
             <h2>image</h2>
             <MDEImageGroup :list="[
-                {src: img350, alt: '350_1', width: 350, height: 700},
-                {src: img350, alt: '350_2', width: 350, height: 700},
-                {src: img350, alt: '350_3', width: 350, height: 700}
+                { src: img350, alt: '350_1', width: 350, height: 700 },
+                { src: img350, alt: '350_2', width: 350, height: 700 },
+                { src: img350, alt: '350_3', width: 350, height: 700 },
             ]">
             </MDEImageGroup>
-            <p>code</p>
-            <hr>
-            <MDECode lang="js"><pre><div class="hljs"><span class="hljs-keyword">var</span> getUserInfo = <span class="hljs-keyword">function</span>(<span class="hljs-params">userId, callback</span>) {
+            <h2 id="title2-1">code</h2>
+            <hr />
+            <MDECode lang="js">
+                <pre><div class="hljs"><span class="hljs-keyword">var</span> getUserInfo = <span class="hljs-keyword">function</span>(<span class="hljs-params">userId, callback</span>) {
     $.<span class="hljs-title function_">ajax</span>(<span class="hljs-string">&#x27;http://xxx?&#x27;</span> + userId, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
         <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">&#x27;function&#x27;</span>) {
             <span class="hljs-title function_">callback</span>(data);
@@ -59,7 +63,8 @@
 <span class="hljs-title function_">getUserInfo</span>(<span class="hljs-number">13157</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data.<span class="hljs-property">userName</span>);
 });
-</div></pre></MDECode>
+</div></pre>
+            </MDECode>
             <MDECode lang="html">
                 <pre><div class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -84,7 +89,7 @@
             <BButton variant="info">Info</BButton>
             <BButton variant="light">Light</BButton>
             <BButton variant="dark">Dark</BButton>
-            <hr>
+            <hr />
             <BButton variant="outline-primary">Primary</BButton>
             <BButton variant="outline-secondary">Secondary</BButton>
             <BButton variant="outline-success">Success</BButton>
@@ -93,7 +98,7 @@
             <BButton variant="outline-info">Info</BButton>
             <BButton variant="outline-light">Light</BButton>
             <BButton variant="outline-dark">Dark</BButton>
-            <hr>
+            <hr />
             <BBadge variant="primary">Primary</BBadge>
             <BBadge variant="secondary">Secondary</BBadge>
             <BBadge variant="success">Success</BBadge>
@@ -102,7 +107,7 @@
             <BBadge variant="info">Info</BBadge>
             <BBadge variant="light">Light</BBadge>
             <BBadge variant="dark">Dark</BBadge>
-            <hr>
+            <hr />
             <BAlert :model-value="true" variant="primary">Primary Alert</BAlert>
             <BAlert :model-value="true" variant="secondary">Secondary Alert</BAlert>
             <BAlert :model-value="true" variant="success">Success Alert</BAlert>
@@ -111,7 +116,7 @@
             <BAlert :model-value="true" variant="info">Info Alert</BAlert>
             <BAlert :model-value="true" variant="light">Light Alert</BAlert>
             <BAlert :model-value="true" variant="dark">Dark Alert</BAlert>
-            <hr>
+            <hr />
             <p class="text-primary">.text-primary</p>
             <p class="text-primary-emphasis">.text-primary-emphasis</p>
             <p class="text-secondary">.text-secondary</p>
@@ -152,26 +157,18 @@ import MDENavToc from './components/MDENavToc.vue'
 import MDECode from './components/MDECode.vue'
 import MDEImageGroup from './components/MDEImageGroup.vue'
 import MDEBanner from './components/MDEBanner.vue'
-import type { TreeItem } from '../types'
+import type { TreeItem } from '../types/index'
 import img350 from './imgs/350.jpg'
 
 const navList: TreeItem[] = [
-    {
-        text: '介绍',
-        href: '/info'
-    },
+    { text: '介绍', href: '/info', id: '0' },
     {
         text: '安装',
         items: [
-            {
-                text: '环境',
-                href: '/env'
-            },
-            {
-                text: '软件',
-                href: '/soft'
-            }
-        ]
+            { text: '环境', href: '/env', id: '1-0' },
+            { text: '软件', href: '/soft', id: '1-1' },
+        ],
+        id: '1',
     },
     {
         text: '极端案例场景',
@@ -181,98 +178,79 @@ const navList: TreeItem[] = [
                 items: [
                     {
                         text: 'English and how to use this content',
-                        href: '/asd'
+                        href: '/asd',
+                        id: '2-0-0',
                     },
                     {
                         text: 'very long, very long, very long, very very very very very very very long long long long',
-                        href: '/#/'
+                        href: '/#/',
+                        id: '2-0-1',
                     },
                     {
                         text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
-                        href: '/#/'
-                    }
-                ]
+                        href: '/#/',
+                        id: '2-0-2',
+                    },
+                ],
+                id: '2-0',
             },
             {
                 text: 'English and how to use this content',
-                href: '/#/'
+                href: '/#/',
+                id: '2-1',
             },
             {
                 text: 'very long, very long, very long, very very very very very very very long long long long',
-                href: '/#/'
+                href: '/#/',
+                id: '2-2',
             },
             {
                 text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
-                href: '/#/'
-            }
-        ]
+                href: '/#/',
+                id: '2-3',
+            },
+        ],
+        id: '2',
     },
-    {
-        text: '命令'
-    },
+    { text: '命令', id: '3' },
     {
         text: '组件',
         items: [
-            {
-                text: '文字',
-                href: '/#'
-            },
-            {
-                text: '按钮',
-                href: '/#'
-            },
-            {
-                text: '图片',
-                href: '/#'
-            },
-            {
-                text: '卡片',
-                href: '/#'
-            },
-            {
-                text: '手风琴',
-                href: '/#'
-            },
-            {
-                text: '折叠',
-                href: '/#'
-            },
-            {
-                text: '提示框',
-                href: '/#'
-            }
-        ]
-    }
+            { text: '文字', href: '/#', id: '4-0' },
+            { text: '按钮', href: '/#', id: '4-1' },
+            { text: '图片', href: '/#', id: '4-2' },
+            { text: '卡片', href: '/#', id: '4-3' },
+            { text: '手风琴', href: '/#', id: '4-4' },
+            { text: '折叠', href: '/#', id: '4-5' },
+            { text: '提示框', href: '/#', id: '4-6' },
+        ],
+        id: '4',
+    },
 ]
 const tocList: TreeItem[] = [
     {
         text: 'title1',
         href: '#',
         items: [
-            {
-                text: 'ttile1-1',
-            },
-            {
-                text: 'ttile1-2',
-            },
-            {
-                text: 'ttile1-3',
-            },
+            { text: 'ttile1-1', id: '0-0' },
+            { text: 'ttile1-2', id: '0-1' },
+            { text: 'ttile1-3', id: '0-2' },
         ],
+        id: '0',
     },
     {
         text: 'title2',
         items: [
             {
                 text: 'ttile2-1',
+                href: '#title2-1',
+                id: '1-0',
+                isFocusable: true,
             },
-            {
-                text: 'ttile2-2',
-            },
-            {
-                text: 'ttile2-3',
-            },
+            { text: 'ttile2-2', id: '1-1' },
+            { text: 'ttile2-3', id: '1-2' },
         ],
+        id: '1',
     },
 ]
 const activeNavMenu = ref(false)
@@ -281,7 +259,7 @@ function inactive() {
     activeNavMenu.value = false
     activeNavToc.value = false
 }
-const title = 'I\'m title !!!! The h1!'
+const title = "I'm title !!!! The h1!"
 const dateTime = '2024-10-08 15:50'
 const birthTime = 'Tuesday, October 8, 2024 3:51 PM'
 const words = '300'

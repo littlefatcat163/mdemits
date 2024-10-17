@@ -37,7 +37,7 @@ import pluginVue from 'esbuild-plugin-mdmits-vue'
                     { from: 'src/layout/icons/*', to: 'layout/icons' },
                     { from: 'src/layout/ui/*', to: 'layout/ui' },
                     { from: 'src/layout/imgs/*', to: 'layout/imgs' },
-                    { from: 'src/types/shared.d.ts', to: 'types' },
+                    { from: 'src/types/*', to: 'types' },
                     { from: ['src/layout/tmp_index.html', 'src/layout/tmp_index.ts', 'src/layout/tmp_app.vue'], to: 'layout' }
                 ]
             }),

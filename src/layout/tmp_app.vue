@@ -24,9 +24,9 @@
         <MDENavToc :active="activeNavToc" :data="tocList" />
     </div>
     <main class="mde-main">
-        <div>
+        <div class="markdown-body">
             <p class="alert alert-primary" role="alert">
-                {{ mTime }}
+                最后更新于：{{ mTime }}
             </p>
             <!-- Markdown -->
         </div>

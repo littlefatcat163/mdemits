@@ -44,6 +44,7 @@ export type MarkdownAppVueEnv = {
 
 export type SizeConfig = {
     root?: string
+    name?: string
     language?: string
     dateFormat?: string
     sidebar?: TreeItem[]

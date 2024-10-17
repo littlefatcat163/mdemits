@@ -9,22 +9,14 @@ import type { MarkdownEnv, MarkdownAppVueEnv, TreeItem } from '../../types'
 const mdRender = createMarkdownRender()
 
 const navList: TreeItem[] = [
-    {
-        text: '介绍',
-        href: '/info',
-    },
+    { text: '介绍', href: '/info', id: '0' },
     {
         text: '安装',
         items: [
-            {
-                text: '环境',
-                href: '/env',
-            },
-            {
-                text: '软件',
-                href: '/soft',
-            },
+            { text: '环境', href: '/env', id: '1-0' },
+            { text: '软件', href: '/soft', id: '1-1' },
         ],
+        id: '1',
     },
     {
         text: '极端案例场景',
@@ -35,66 +27,52 @@ const navList: TreeItem[] = [
                     {
                         text: 'English and how to use this content',
                         href: '/asd',
+                        id: '2-0-0',
                     },
                     {
                         text: 'very long, very long, very long, very very very very very very very long long long long',
                         href: '/#/',
+                        id: '2-0-1',
                     },
                     {
                         text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
                         href: '/#/',
+                        id: '2-0-2',
                     },
                 ],
+                id: '2-0',
             },
             {
                 text: 'English and how to use this content',
                 href: '/#/',
+                id: '2-1',
             },
             {
                 text: 'very long, very long, very long, very very very very very very very long long long long',
                 href: '/#/',
+                id: '2-2',
             },
             {
                 text: '君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。',
                 href: '/#/',
+                id: '2-3',
             },
         ],
+        id: '2',
     },
-    {
-        text: '命令',
-    },
+    { text: '命令', id: '3' },
     {
         text: '组件',
         items: [
-            {
-                text: '文字',
-                href: '/#',
-            },
-            {
-                text: '按钮',
-                href: '/#',
-            },
-            {
-                text: '图片',
-                href: '/#',
-            },
-            {
-                text: '卡片',
-                href: '/#',
-            },
-            {
-                text: '手风琴',
-                href: '/#',
-            },
-            {
-                text: '折叠',
-                href: '/#',
-            },
-            {
-                text: '提示框',
-                href: '/#',
-            },
+            { text: '文字', href: '/#', id: '4-0' },
+            { text: '按钮', href: '/#', id: '4-1' },
+            { text: '图片', href: '/#', id: '4-2' },
+            { text: '卡片', href: '/#', id: '4-3' },
+            { text: '手风琴', href: '/#', id: '4-4' },
+            { text: '折叠', href: '/#', id: '4-5' },
+            { text: '提示框', href: '/#', id: '4-6' },
         ],
+        id: '4',
     },
 ]
 const tocList: TreeItem[] = [
@@ -102,30 +80,25 @@ const tocList: TreeItem[] = [
         text: 'title1',
         href: '#',
         items: [
-            {
-                text: 'ttile1-1',
-            },
-            {
-                text: 'ttile1-2',
-            },
-            {
-                text: 'ttile1-3',
-            },
+            { text: 'ttile1-1', id: '0-0' },
+            { text: 'ttile1-2', id: '0-1' },
+            { text: 'ttile1-3', id: '0-2' },
         ],
+        id: '0',
     },
     {
         text: 'title2',
         items: [
             {
                 text: 'ttile2-1',
+                href: '#title2-1',
+                id: '1-0',
+                isFocusable: true,
             },
-            {
-                text: 'ttile2-2',
-            },
-            {
-                text: 'ttile2-3',
-            },
+            { text: 'ttile2-2', id: '1-1' },
+            { text: 'ttile2-3', id: '1-2' },
         ],
+        id: '1',
     },
 ]
 

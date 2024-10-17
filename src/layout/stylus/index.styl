@@ -99,7 +99,7 @@ h1,h2,h3,h4,h5,h6
     padding-left var(--mde-main-pdx)
     padding-right var(--mde-main-pdx)
     > div
-        padding 1rem 3rem 3rem
+        padding 0 3rem 3rem
         background-color var(--mde-main-bg)
         position relative
         &::before
@@ -111,8 +111,7 @@ h1,h2,h3,h4,h5,h6
             right 0
             height 2.4rem
             background-color var(--mde-main-bg)
-            border-radius 0.8rem 0.8rem 0 0
-        // box-shadow 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
+            border-radius var(--bs-border-radius) var(--bs-border-radius) 0 0
 
 @media (min-width: 1400px)
     .mde-backdrop.active
@@ -130,6 +129,7 @@ h1,h2,h3,h4,h5,h6
         top var(--mde-nav-bar-height)
     .mde-main
         > div
+            padding-top 2.4rem
             &::before
                 opacity 0
 

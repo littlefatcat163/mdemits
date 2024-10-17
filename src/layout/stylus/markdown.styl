@@ -1,0 +1,31 @@
+.markdown-body
+    > h1
+        margin 3rem 0 1.5rem
+    > h2
+        margin 4rem 0 0.75rem
+        padding-top 4rem
+        border-top 1px solid var(--bs-border-color)
+    > h3
+        margin-top 2rem
+
+pre
+    border-radius var(--bs-border-radius)
+
+ol
+    > li > ol
+        list-style-type upper-roman
+        > li > ol
+            list-style-type lower-roman
+            > li > ol
+                list-style-type upper-alpha
+                > li > ol
+                    list-style-type lower-alpha
+
+blockquote
+    opacity 0.88
+    background-color var(--bs-secondary-bg)
+    padding 1rem
+    border-left 0.3rem solid var(--bs-secondary-text-emphasis)
+    border-radius var(--bs-border-radius)
+    p
+        margin-bottom 0

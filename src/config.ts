@@ -1,9 +1,10 @@
 import { loadConfigFromFile, normalizePath } from 'vite'
-import type { SizeConfig } from './types/shared'
+import type { SizeConfig } from './types'
 import path from 'path'
 
 export const sizeConfig: SizeConfig = {
     root: '',
+    name: '',
     language: 'zh-CN',
     dateFormat: 'LLLL',
 }
